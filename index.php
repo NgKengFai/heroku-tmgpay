@@ -21,7 +21,9 @@
  */
 require_once __DIR__ . '/lib/Client.php';
 //date_default_timezone_set("Europe/Amsterdam"); //need to set correct time zone
-
+[12:11, 2/12/2018] Karl Tamago: error_reporting(E_ALL); 
+ini_set('display_errors', TRUE); 
+ini_set('display_startup_errors', TRUE);
 
 ?>
 
@@ -68,7 +70,7 @@ require_once __DIR__ . '/lib/Client.php';
     </div>
 </div>
 <?php
-$client = new Client($_COOKIE["value"],$_COOKIE["currency"]);
+$client = new Client();
 //might need to ask to pass value via setup??
 $setupData = json_encode($client->setup());
 
