@@ -25,7 +25,7 @@
 class Order
 {
     /** @int value - Put the value into minor units 120 = 1.20 (for USD), for decimal information per currency see: https://docs.adyen.com/developers/currency-codes */
-    public $value = $_COOKIE["value"];
+    public $value = 120;
 
     /** @var  $currencyCode - Change this to any currency you support: https://docs.adyen.com/developers/currency-codes */
     public $currencyCode = 'USD';
