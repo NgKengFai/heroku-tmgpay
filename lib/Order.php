@@ -31,7 +31,7 @@ class Order
     public $currencyCode = 'USD';
 
     /** @array $amount - Amount is a combination of value and currency */
-    public $amount = ['value' => $value, 'currency' => "USD"];
+    public $amount = ['value' => 120, 'currency' => "USD"];
 
     public function getAmount()
     {
