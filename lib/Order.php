@@ -33,7 +33,7 @@ class Order
     /** @array $amount - Amount is a combination of value and currency */
     public $amount = ['value' => 0, 'currency' => "USD"];
 
-public __construct(){
+public function __construct(){
 	parent::__construct();
 	try{
 		$this->value = $_COOKIE['value'];
