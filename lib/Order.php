@@ -36,7 +36,7 @@ class Order
 	
 	public function init(){
 		try{
-			$this->value = $_COOKIE['value'];
+			$this->value = $_COOKIE['value']*100;
 			$this->amount['value'] = $this->value;	
 		}
 		catch(Exception $e){
