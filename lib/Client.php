@@ -53,6 +53,7 @@ class Client
             'merchantAccount' => $authentication['merchantAccount']
         );
         $data = json_encode($request);
+		print_r($data);exit;
         return $this->doPostRequest($url, $data, $authentication);
 
     }

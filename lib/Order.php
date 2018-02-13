@@ -43,7 +43,7 @@ class Order
 			echo "ERROR: ".$e;
 		}
 	}
-	
+
     public function getAmount()
     {
         return $this->amount;
