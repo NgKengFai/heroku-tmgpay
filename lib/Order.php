@@ -34,8 +34,14 @@ class Order
     public $amount = ['value' => 0, 'currency' => "USD"];
 
 public __construct(){
-	$this->value = $_COOKIE['value'];
-	$this->amount['value'] = $this->value;
+	parent::__construct();
+	try{
+		$this->value = $_COOKIE['value'];
+	$this->amount['value'] = $this->value;	
+	}
+	catch(Exception $e{
+		echo $e;
+	}
 }
 
 public function test(){
