@@ -27,6 +27,7 @@ class Client
     public function setup()
     {
         $order = new Order();
+		$order->test();
         $authentication = Config::getAuthentication();
         $url = Config::getSetupUrl();
         $request = array(
@@ -39,7 +40,7 @@ class Client
             'shopperReference' => $order->getShopperReference(),
             'shopperLocale' => $order->getShopperLocale(),
             'reference' => $order->getReference(),
-			'shopper.telephoneNumber'=>$order->getTel(), //modded
+			'shopper.telephoneNumber'=>'0199999999', //modded
 
             /** All server specific settings can be found in config/Config.php */
 
