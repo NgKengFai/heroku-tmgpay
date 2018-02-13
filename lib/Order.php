@@ -44,16 +44,13 @@ public function __contsruct(){
 }
 
 public function test(){
-	echo "<h1>test</h1>";
 	try{
-		echo "This is cookie: ".$_COOKIE['value'];
-		$this->value = $_COOKIE['value'];
+	$this->value = $_COOKIE['value'];
 	$this->amount['value'] = $this->value;	
 	}
 	catch(Exception $e){
 		echo $e;
 	}
-	var_dump($this->amount);
 }
     public function getAmount()
     {
