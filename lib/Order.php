@@ -25,16 +25,21 @@
 class Order
 {
     /** @int value - Put the value into minor units 120 = 1.20 (for USD), for decimal information per currency see: https://docs.adyen.com/developers/currency-codes */
-    public $value = $_COOKIE['value'];
+    public $value = 0;
 
     /** @var  $currencyCode - Change this to any currency you support: https://docs.adyen.com/developers/currency-codes */
     public $currencyCode = 'USD';
 
     /** @array $amount - Amount is a combination of value and currency */
-    public $amount = ['value' => 120, 'currency' => "USD"];
+    public $amount = ['value' => 0, 'currency' => "USD"];
 
 public __construct(){
 	$this->value = $_COOKIE['value'];
+	$this->amount['value'] = $this->value;
+}
+
+public function test(){
+	var_dump($this->amount);
 }
     public function getAmount()
     {

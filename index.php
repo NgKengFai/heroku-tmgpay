@@ -19,11 +19,12 @@
  *
  * Author: Adyen
  */
-require_once __DIR__ . '/lib/Client.php';
-//date_default_timezone_set("Europe/Amsterdam"); //need to set correct time zone
 error_reporting(E_ALL); 
 ini_set('display_errors', TRUE); 
 ini_set('display_startup_errors', TRUE);
+
+require_once __DIR__ . '/lib/Client.php';
+//date_default_timezone_set("Europe/Amsterdam"); //need to set correct time zone
 
 ?>
 
