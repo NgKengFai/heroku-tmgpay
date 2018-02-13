@@ -33,25 +33,17 @@ class Order
     /** @array $amount - Amount is a combination of value and currency */
     public $amount = ['value' => 0, 'currency' => "USD"];
 
-public function __contsruct(){
-	try{
-		$this->value = $_COOKIE['value'];
-	$this->amount['value'] = $this->value;	
-	}
-	catch(Exception $e){
-		echo $e;
-	}
-}
 
-public function test(){
-	try{
-	$this->value = $_COOKIE['value'];
-	$this->amount['value'] = $this->value;	
+	public function init(){
+		try{
+			$this->value = $_COOKIE['value'];
+			$this->amount['value'] = $this->value;	
+		}
+		catch(Exception $e){
+			echo "ERROR: ".$e;
+		}
 	}
-	catch(Exception $e){
-		echo $e;
-	}
-}
+	
     public function getAmount()
     {
         return $this->amount;

@@ -27,7 +27,7 @@ class Client
     public function setup()
     {
         $order = new Order();
-		$order->test();
+		$order->init();
         $authentication = Config::getAuthentication();
         $url = Config::getSetupUrl();
         $request = array(
