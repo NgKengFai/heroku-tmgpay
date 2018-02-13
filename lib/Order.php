@@ -38,7 +38,7 @@ public function __contsruct(){
 		$this->value = $_COOKIE['value'];
 	$this->amount['value'] = $this->value;	
 	}
-	catch(Exception $e{
+	catch(Exception $e){
 		echo $e;
 	}
 }
