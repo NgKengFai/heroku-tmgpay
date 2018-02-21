@@ -39,7 +39,7 @@ class Order
 		try{
 			$this->value = $_COOKIE['value']*100;
 			$this->amount['value'] = $this->value;	
-			$this->order_id = $_COOKIE["order_id"];
+			$this->reference = $_COOKIE["order_id"];
 		}
 		catch(Exception $e){
 			echo "ERROR: ".$e;
