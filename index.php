@@ -31,7 +31,7 @@ require_once __DIR__ . '/lib/Client.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="robots" content="noindex"/>
-    <title>Example PHP checkout</title>
+    <title>Adyen Checkout Page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript"
             src="https://checkoutshopper-test.adyen.com/checkoutshopper/assets/js/sdk/checkoutSDK.1.2.0.min.js"></script>
@@ -39,11 +39,11 @@ require_once __DIR__ . '/lib/Client.php';
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body class="body">
-<div><?php echo $_COOKIE["value"]; ?></div>
+<div><?php //echo $_COOKIE["value"]; ?></div>
 <div><?php  
 date_default_timezone_set('Asia/Singapore');
 setcookie("order_id",date("Ymdhis").mt_rand(1000,9999),time()+(5*60*1000),"/");
-echo $_COOKIE["order_id"]; ?></div>
+//echo $_COOKIE["order_id"]; ?></div>
 
 <div class="content">
     <div class="explanation hidden">
