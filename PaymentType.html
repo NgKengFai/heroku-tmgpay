@@ -452,6 +452,11 @@
             currentSelection = type;
 
             btnPay.css("opacity", "1");
+			if (currentSelection == 1){
+					document.getElementById("paypal-header").style.display = 'block';
+					document.getElementById("paypal-button-container").style.display = 'block';
+					//document.getElementById("payment").style.display = 'none';
+				}
         }
 
         function pay() {
@@ -467,7 +472,7 @@
 				if (currentSelection == 1){
 					document.getElementById("paypal-header").style.display = 'block';
 					document.getElementById("paypal-button-container").style.display = 'block';
-					document.getElementById("payment").style.display = 'none';
+					//document.getElementById("payment").style.display = 'none';
 				}
 				//if current selection is 2 go to adyen
 				else if (currentSelection ==2){
