@@ -65,8 +65,10 @@ echo $_COOKIE["order_id"]; ?></div>
     </div>
 
     <div class="checkout-container">
+	<div id="order-id"></div>
         <div class="checkout" id="checkout">
             <!-- The checkout interface will be rendered here -->
+			
         </div>
     </div>
 </div>
@@ -92,7 +94,8 @@ $setupData = json_encode($client->setup());
                 method: 'POST',// jQuery > 1.9
                 type: 'POST', //jQuery < 1.9
                 success: function (data) {
-                    $("#checkout").html(data.authResponse);
+					$("#order-id").html("<b>Order ID: </b>"+ data.merchantReference);
+                    $("#checkout").html("<b>Payment Status: </b>"+ data.authResponse);
                 },
                 error: function () {
                     if (window.console && console.log) {
