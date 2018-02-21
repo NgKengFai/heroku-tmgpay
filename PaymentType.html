@@ -358,12 +358,13 @@
             <div class="bottomRow3">
 
                 <input id="btnPay" type="button" class="topUpButton" value="Top Up" onclick="pay()" />
+				<div id="paypal-header">Please click here to pay:</div>
+				<div id="paypal-button-container"></div>
             </div>
         </div>
-
+		
     </div>
-	<div id="paypal-header">Please click here to pay:</div>
-	<div id="paypal-button-container"></div>
+	
     <script>
 	
 			paypal.Button.render({
@@ -452,10 +453,18 @@
             currentSelection = type;
 
             btnPay.css("opacity", "1");
-			if (currentSelection == 1){
+			
+				if (currentSelection == 1){
+				console.log(currentSelection);
+				document.getElementById("btnPay").style.display = 'none';
 					document.getElementById("paypal-header").style.display = 'block';
 					document.getElementById("paypal-button-container").style.display = 'block';
 					//document.getElementById("payment").style.display = 'none';
+				}else{
+				console.log(currentSelection);
+				document.getElementById("btnPay").style.display = 'inline';
+					document.getElementById("paypal-header").style.display = 'none';
+					document.getElementById("paypal-button-container").style.display = 'none';
 				}
         }
 
