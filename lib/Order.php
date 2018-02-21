@@ -32,7 +32,8 @@ class Order
 
     /** @array $amount - Amount is a combination of value and currency */
     public $amount = ['value' => 0, 'currency' => "USD"];
-
+    /** @var $reference - order number */
+    public $reference = 'order_id';
 	
 	public function init(){
 		try{
@@ -50,8 +51,7 @@ class Order
         return $this->amount;
     }
 
-    /** @var $reference - order number */
-    public $reference = 'order_id';
+
 
     public function getReference()
     {
