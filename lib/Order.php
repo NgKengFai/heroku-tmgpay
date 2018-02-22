@@ -50,6 +50,7 @@ class Order
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
 			$this->shopperReference = $_SESSION["phonenumber"];
 			$this->countryCode = $_SESSION["countrycode"];
+			echo "Country Code is:".$_SESSION["countrycode"];
 			
 		}
 		catch(Exception $e){
