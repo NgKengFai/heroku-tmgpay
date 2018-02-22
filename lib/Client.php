@@ -40,7 +40,7 @@ class Client
             'shopperReference' => $order->getShopperReference(),
             'shopperLocale' => $order->getShopperLocale(),
             'reference' => $order->getReference(),
-			'shopper.telephoneNumber'=>'0199999999', //modded
+			'shopper.telephoneNumber'=>getTel(), //modded
 
             /** All server specific settings can be found in config/Config.php */
 

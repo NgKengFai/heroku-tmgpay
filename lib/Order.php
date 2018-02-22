@@ -34,12 +34,21 @@ class Order
     public $amount = ['value' => 0, 'currency' => "USD"];
     /** @var $reference - order number */
     public $reference = 'order_id';
+	/** @var $shopperReference - Your shopper reference (id or e-mail are commonly used) */
+    public $shopperReference = 'example_shopper';
+    /** @var $countryCode - The countryCode influences the returned payment methods */
+    public $countryCode = 'MY';
 	
 	public function init(){
 		try{
 			$this->value = $_COOKIE['value']*100;
-			$this->amount['value'] = $this->value;	
+			$this->amount['value'] = $this->value;
+			$this->amount['currency'] = $_COOKIE["currency"];
 			$this->reference = $_COOKIE["order_id"];
+			$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
+			$this->shopperReference = $_COOKIE["phonenumber"];
+			$this->countryCode = $_COOKIE["countrycode"];
+			
 		}
 		catch(Exception $e){
 			echo "ERROR: ".$e;
@@ -58,8 +67,7 @@ class Order
         return $this->reference;
     }
 
-    /** @var $shopperReference - Your shopper reference (id or e-mail are commonly used) */
-    public $shopperReference = 'example_shopper';
+
 
     public function getShopperReference()
     {
@@ -74,8 +82,6 @@ class Order
         return $this->shopperLocale;
     }
 
-    /** @var $countryCode - The countryCode influences the returned payment methods */
-    public $countryCode = 'MY';
 
     public function getCountryCode()
     {
