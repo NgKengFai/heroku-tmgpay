@@ -43,8 +43,8 @@ class Order
 		try{
 			$this->value = $_COOKIE['value']*100;
 			$this->amount['value'] = $this->value;
-			//$this->currencyCode = $_COOKIE["currency"];
-			//$this->amount['currency'] = $this->$currencyCode;
+			$this->currencyCode = $_COOKIE["currency"];
+			$this->amount['currency'] = $this->currencyCode;
 			$this->reference = $_COOKIE["order_id"];
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
 			$this->shopperReference = $_COOKIE["phonenumber"];
