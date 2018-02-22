@@ -42,7 +42,7 @@ require_once __DIR__ . '/lib/Client.php';
 <div><?php //echo $_COOKIE["value"]; ?></div>
 <div><?php  
 date_default_timezone_set('Asia/Singapore');
-//setcookie("order_id",date("Ymdhis").mt_rand(1000,9999),time()+(5*60*1000),"/");
+setcookie("order_id",date("Ymdhis").mt_rand(1000,9999),time()+(5*60*1000),"/");
 //echo $_COOKIE["order_id"]; ?></div>
 
 <div class="content">
