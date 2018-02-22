@@ -43,11 +43,11 @@ class Order
 		try{
 			$this->value = $_COOKIE['value']*100;
 			$this->amount['value'] = $this->value;
-			$this->amount['currency'] = $_COOKIE["currency"];
+			//$this->amount['currency'] = $_COOKIE["currency"];
 			$this->reference = $_COOKIE["order_id"];
-			$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
-			$this->shopperReference = $_COOKIE["phonenumber"];
-			$this->countryCode = $_COOKIE["countrycode"];
+			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
+			//$this->shopperReference = $_COOKIE["phonenumber"];
+			//$this->countryCode = $_COOKIE["countrycode"];
 			
 		}
 		catch(Exception $e){
