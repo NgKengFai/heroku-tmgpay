@@ -21,7 +21,7 @@
  */
 require_once __DIR__ . '/lib/Client.php';
 //date_default_timezone_set("Europe/Amsterdam"); //need to set correct time zone
-
+session_start();
 ?>
 
 <!DOCTYPE html>
