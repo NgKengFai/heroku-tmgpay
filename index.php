@@ -459,7 +459,7 @@ session_start();
 				//setCookie("phonenumber",txtPhoneNo.val());				
 				//localStorage.setItem("countrycode",countryCode);
 				//localStorage.setItem("phonenumber",txtPhoneNo.val());
-                window.location.href = "PaymentType";
+                window.location.href = "PaymentType.php";
             }
             else {
 
