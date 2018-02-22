@@ -37,7 +37,7 @@ class Order
 	/** @var $shopperReference - Your shopper reference (id or e-mail are commonly used) */
     public $shopperReference = 'example_shopper';
     /** @var $countryCode - The countryCode influences the returned payment methods */
-    public $countryCode = 'MY';
+    public $countryCode = '';
 	
 	public function init(){
 		try{
