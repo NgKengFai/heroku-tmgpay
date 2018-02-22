@@ -434,8 +434,12 @@
             currentSelection = type;
 
             jQuery("#lblRM").html("USD " + coinData[type]);
-			setCookie("currency","USD");
-			setCookie("value",coinData[type]);
+			
+			window.sessionStorage.currency = coinData[type];
+			window.sessionStorage.value = "USD";
+			
+			//setCookie("currency","USD");
+			//setCookie("value",coinData[type]);
 			//localStorage.setItem("currency","USD");
 			//localStorage.setItem("value",coinData[type]);
         }
@@ -445,8 +449,10 @@
             if (txtPhoneNo.val().length > 0) {
 				var e = document.getElementById("countrycode");
 				var countryCode = e.options[e.selectedIndex].value;
-				setCookie("countrycode",countryCode);
-				setCookie("phonenumber",txtPhoneNo.val());				
+				window.sessionStorage.countrycode= countryCode;
+				window.sessionStorage.phonenumber = txtPhoneNo.val();
+				//setCookie("countrycode",countryCode);
+				//setCookie("phonenumber",txtPhoneNo.val());				
 				//localStorage.setItem("countrycode",countryCode);
 				//localStorage.setItem("phonenumber",txtPhoneNo.val());
                 window.location.href = "PaymentType.html";
