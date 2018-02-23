@@ -363,7 +363,7 @@ echo 'My Value Paying for is'.$_GET["value"];
 
             <div class="bottomRow3">
 			<form action="PaymentPage.php" method='post' name='sendform' onSubmit='pay()'>	
-                <input id="btnPay" type="submit" class="topUpButton" value="Top Up">
+                <input id="btnPay" type="button" class="topUpButton" value="Top Up">
 				<!--onclick="pay()" />-->
 			</form>
 				<div id="paypal-header">Please click here to pay:</div>
