@@ -389,7 +389,7 @@
                     payment: {
                         transactions: [
                             {
-                                amount: { total: sessionStorage["value"], currency: sessionStorage["currency"] }
+                                amount: { total: getCookie("value"), currency: getCookie("currency") }
                             }
                         ]
                     }
@@ -401,7 +401,6 @@
 
                 // Make a call to the REST api to execute the payment
                 return actions.payment.execute().then(function() {
-				//change for print
                     window.alert('Payment Complete!');
                 });
             },
@@ -421,15 +420,10 @@
         }, '#paypal-button-container');
 	
 					
-		//console.log(getCookie("value"));
-		//console.log(getCookie("currency"));
-		//console.log(getCookie("phonenumber"));
-		//console.log(getCookie("countrycode"));
-		console.log(sessionStorage['phonenumber']);
-		console.log(sessionStorage['countrycode']);
-		console.log(sessionStorage['currency']);
-		console.log(sessionStorage['value']);
-		
+		console.log(getCookie("value"));
+		console.log(getCookie("currency"));
+		console.log(getCookie("phonenumber"));
+		console.log(getCookie("countrycode"));
         var currentSelection, selections = jQuery(".boxCss"), btnPay = jQuery("#btnPay");
 		
 		//retrieve cookie data
