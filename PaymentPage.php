@@ -44,8 +44,8 @@ session_start();
 date_default_timezone_set('Asia/Singapore');
 //setcookie("order_id",date("Ymdhis").mt_rand(1000,9999),time()+(5*60*1000),"/");
 //echo $_COOKIE["order_id"]; 
-echo "Country Code is:".$_POST["countrycode"];
-echo "Value is:".$_POST["value"];
+echo "Country Code is:".$_SESSION["countrycode"];
+echo "Value is:".$_SESSION["value"];
 
 ?></div>
 
