@@ -439,8 +439,8 @@ session_start();
 
             jQuery("#lblRM").html("USD " + coinData[type]);
 			
-			window.sessionStorage.currency = coinData[type];
-			window.sessionStorage.value = "USD";
+			window.sessionStorage.currency = "USD";
+			window.sessionStorage.value = coinData[type];
 			
 			//setCookie("currency","USD");
 			//setCookie("value",coinData[type]);
