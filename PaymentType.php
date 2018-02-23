@@ -497,22 +497,7 @@ echo 'My Value Paying for is'.$_GET["value"];
 				}
 				//if current selection is 2 go to adyen
 				else if (currentSelection ==2){
-					$.ajax({
-        type: 'POST',
-        url: 'PaymentPage.php',
-        data: {
-			value: sessionStorage['value'],
-			countrycode: sessionStorage['countrycode'],
-			phonenumber: sessionStorage['phonenumber']
-		
-		
-		},
-        success: function(data) { 
-                window.location.href = "PaymentPage.php";
-            },
-        error: function(xhr, ajaxOptions, thrownerror) { }
-    });
-				
+				window.location.href = "index.php";
 				}
 				
             }
