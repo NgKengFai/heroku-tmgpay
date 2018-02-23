@@ -49,7 +49,7 @@ class Order
 			//$this->reference = $_COOKIE["order_id"];
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
 			$this->shopperReference = $_SESSION["phonenumber"];
-			//$this->countryCode = $_SESSION["countrycode"];
+			$this->countryCode = $_SESSION["countrycode"];
 			
 			
 		}
