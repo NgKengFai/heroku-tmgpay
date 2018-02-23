@@ -511,7 +511,7 @@ echo 'My Value Paying for is'.$_GET["value"];
 		
 		},
         success: function(data) { 
-                window.location.href = "PaymentPage.php";
+                //window.location.href = "PaymentPage.php";
             },
         error: function(xhr, ajaxOptions, thrownerror) { }
     });
