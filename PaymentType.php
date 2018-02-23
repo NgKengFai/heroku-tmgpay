@@ -294,9 +294,8 @@ session_start();
 
 <body>
 <?php
-echo 'My Value Paying for is'.$_SESSION["value"];
+echo "My Value is.$_SESSION["value"];
 ?>
-
     <div id="payment" class="backgroundColor" style="">
 
         <div class="text-center">
