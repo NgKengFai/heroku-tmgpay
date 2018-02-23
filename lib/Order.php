@@ -41,15 +41,15 @@ class Order
 	
 	public function init(){
 		try{
-			$this->value = $_SESSION['value']*100;
+			$this->value = $_POST['value']*100;
 			$this->amount['value'] = $this->value;
-			$this->currencyCode = $_SESSION["currency"];
+			$this->currencyCode = $_POST["currency"];
 			$this->amount['currency'] = $this->currencyCode;
 			$this->reference = date("Ymdhis").mt_rand(1000,9999);
 			//$this->reference = $_COOKIE["order_id"];
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
-			$this->shopperReference = $_SESSION["phonenumber"];
-			//$this->countryCode = $_SESSION["countrycode"];
+			$this->shopperReference = $_POST["phonenumber"];
+			$this->countryCode = $_POST["countrycode"];
 			
 			
 		}
