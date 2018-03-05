@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
@@ -124,7 +125,7 @@
             width: 7.5vw;
             position: absolute;
             right: 5px;
-            top: 5px;
+            top: 12px;
         }
 
         .bottomDiv {
@@ -268,16 +269,39 @@
 
             <div class="phoneDiv">
                 <div class="pull-left areaCode">
-                    <select id="countrycode">
-						<option value="MY">+60</option>
-						<option value="ID">+62</option>
-						<option value="VN">+84</option>
-						<option value="PI">+63</option>
-					</select>
+					<select id="countrycode" class="countrycode" style="width:55px;" onchange="currencyChange()">
+								<option value=''>+XX</option>
+								<?php
+ 									$json=file_get_contents("http://api-v2.tamago.tv//mobile/mobileAreaCodes.html");
+									$data =  json_decode($json,true);
+
+
+								try{
+									 if (!empty($data['data']['code_maps'])) {
+
+										foreach ($data['data']['code_maps'] as $code_maps) {
+											
+											echo "<option data-display='$code_maps[country] $code_maps[area]' value='$code_maps[area]'>$code_maps[country] $code_maps[area]</option>";
+											
+										}
+
+
+									} 
+									else{
+										echo "empty";
+									}
+								}
+								catch(Exception $e){
+									echo $e; 
+								}
+								?>
+					</select> 
                 </div>
                 <div>
-                    <input type="text" id="txtPhoneNo" class="txtPhoneNoCss" placeholder="Phone Number" maxlength="12" />
+                    <input type="text" id="txtPhoneNo" class="txtPhoneNoCss" placeholder="Phone Number" maxlength="12" onBlur="checkAvailability()"/>
+					<p><span id="phone-status"></span></p>
                 </div>
+				<p><img src="LoaderIcon.gif" id="loaderIcon" style="display:none" /></p>
             </div>
             <div>
                 <span id="lblRequiredPhoneNumber" class="requiredPhoneNumber">Phone Number is Required</span>
@@ -297,7 +321,7 @@
                     <img class='selection' src='img/T-coins-02.png'>
                     <span>39 T-Coins</span>
                     <br />
-                    <span class="rmCss">USD3.90</span>
+                    <span class="rmCss"><span id="currency1">USD</span><span id="payvalue1">3.90</span></span>
                     <img class='icon-coin' src='img/T-coins-01.png'>
                 </div>
             </div>
@@ -307,7 +331,7 @@
                     <img class='selection' src='img/T-coins-02.png'>
                     <span>169 T-Coins</span>
                     <br />
-                    <span class="rmCss">USD16.90</span>
+                    <span class="rmCss"><span id="currency2">USD</span><span id="payvalue2">16.90</span></span>
                     <img class='icon-coin' src='img/T-coins-01.png'>
                 </div>
             </div>
@@ -319,7 +343,7 @@
                     <img class='selection' src='img/T-coins-02.png'>
                     <span>579 T-Coins</span>
                     <br />
-                    <span class="rmCss">USD57.90</span>
+                    <span class="rmCss"><span id="currency3">USD</span><span id="payvalue3">57.90</span></span>
                     <img class='icon-coin' src='img/T-coins-01.png'>
                 </div>
             </div>
@@ -329,7 +353,7 @@
                     <img class='selection' src='img/T-coins-02.png'>
                     <span>999 T-Coins</span>
                     <br />
-                    <span class="rmCss">USD99.90</span>
+                    <span class="rmCss"><span id="currency4">USD</span><span id="payvalue4">99.90</span></span>
                     <img class='icon-coin' src='img/T-coins-01.png'>
                 </div>
             </div>
@@ -341,7 +365,7 @@
                     <img class='selection' src='img/T-coins-02.png'>
                     <span>2999 T-Coins</span>
                     <br />
-                    <span class="rmCss">USD299.90</span>
+                    <span class="rmCss"><span id="currency5">USD</span><span id="payvalue5">299.90</span></span>
                     <img class='icon-coin' src='img/T-coins-01.png'>
                 </div>
             </div>
@@ -351,7 +375,7 @@
                     <img class='selection' src='img/T-coins-02.png'>
                     <span>6999 T-Coins</span>
                     <br />
-                    <span class="rmCss">USD699.90</span>
+                    <span class="rmCss"><span id="currency6">USD</span><span id="payvalue6">699.90</span></span>
                     <img class='icon-coin' src='img/T-coins-01.png'>
                 </div>
             </div>
@@ -363,7 +387,7 @@
 
             <div class="bottomRow2">
 
-                <span id="lblRM">USD 0</span>
+                <span id="currency7">USD</span><span id="lblRM"> 0</span>
             </div>
             <div class="bottomRow3">
 
@@ -433,8 +457,12 @@
             evt.currentTarget.className += " active";
             currentSelection = type;
 
-            jQuery("#lblRM").html("USD " + coinData[type]);
-			setCookie("currency","USD");
+            jQuery("#lblRM").html(" " + coinData[type]);
+			
+			//window.sessionStorage.currency = coinData[type];
+			//window.sessionStorage.value = "USD";
+			
+			//setCookie("currency","USD");
 			setCookie("value",coinData[type]);
 			//localStorage.setItem("currency","USD");
 			//localStorage.setItem("value",coinData[type]);
@@ -445,6 +473,8 @@
             if (txtPhoneNo.val().length > 0) {
 				var e = document.getElementById("countrycode");
 				var countryCode = e.options[e.selectedIndex].value;
+				//window.sessionStorage.countrycode= countryCode;
+				//window.sessionStorage.phonenumber = txtPhoneNo.val();
 				setCookie("countrycode",countryCode);
 				setCookie("phonenumber",txtPhoneNo.val());				
 				//localStorage.setItem("countrycode",countryCode);
@@ -477,7 +507,194 @@
                 }
             });
         });
+		function showFields(){  
+				function addNewData() {
+					var data;
+					  $.ajax({
+						 type: "POST",
+						 url: "option.php",
+						 data: {},
+						 success: function(data){
+							var content = '<select id="countrycode" class="countrycode" style="width:55px;" onchange="currencyChange()" onclick="showFields()">';
+							//alert(data);
+							//console.log(data);
+							//content += '<select id="areacode_'+i+'" name="areacode_'+i+'" class="areacode_list"><option value="" >--- Select ---</option>"';
+							//populate list into options select
+							content += data;
+							//content += '</select></br>';
+							//console.log(content);
+							content += '</select>';
+							$("#countrycode").html(content);
+							
+						 }
+						});
+					}                  
+				
+				addNewData();
+				
+		}
+		//replaces label for options
+		function showDisplayValue(e) {
+		  var options = e.target.options,
+			  option = e.target.selectedOptions[0],
+			  i;
+		  
+		  // reset options
+		  for (i = 0; i < options.length; ++i) {
+			options[i].innerText = options[i].getAttribute('data-display');
+		  }
+		  
+		  // change the selected option's text to its `value` attribute value
+		  option.innerText = option.getAttribute('value');
+		}
 
+		document.getElementById('countrycode').addEventListener('change', showDisplayValue, false);
+		
+		function currencyChange(){
+			
+			var x = document.getElementById("countrycode").value;
+			
+			if (x == "+60" ){
+				currency ="RM";
+				document.getElementById("currency1").innerHTML = currency;
+				document.getElementById("currency2").innerHTML = currency;
+				document.getElementById("currency3").innerHTML = currency;
+				document.getElementById("currency4").innerHTML = currency;
+				document.getElementById("currency5").innerHTML = currency;
+				document.getElementById("currency6").innerHTML = currency;
+				document.getElementById("currency7").innerHTML = currency;
+				coinData = { "1": "3.90", "2": "16.90", "3": "57.90", "4": "99.90", "5": "299.90", "6": "699.90" };
+				for (i = 1; i <= 6; i++) { 
+				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
+				}
+				y = currency;			
+			}else if (x == "+886")	{
+				currency ="NTD";
+				document.getElementById("currency1").innerHTML = currency;
+				document.getElementById("currency2").innerHTML = currency;
+				document.getElementById("currency3").innerHTML = currency;
+				document.getElementById("currency4").innerHTML = currency;
+				document.getElementById("currency5").innerHTML = currency;
+				document.getElementById("currency6").innerHTML = currency;
+				document.getElementById("currency7").innerHTML = currency;
+				coinData = { "1": "39.00", "2": "169.00", "3": "579.00", "4": "999.00", "5": "2999.00", "6": "6999.00" };
+				for (i = 1; i <= 6; i++) { 
+				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
+				}
+				y = currency;
+				
+			}else if (x == "+84")	{
+				currency ="USD";
+				document.getElementById("currency1").innerHTML = currency;
+				document.getElementById("currency2").innerHTML = currency;
+				document.getElementById("currency3").innerHTML = currency;
+				document.getElementById("currency4").innerHTML = currency;
+				document.getElementById("currency5").innerHTML = currency;
+				document.getElementById("currency6").innerHTML = currency;
+				document.getElementById("currency7").innerHTML = currency;
+				coinData = { "1": "1", "2": "4", "3": "16", "4": "25", "5": "75", "6": "175" };
+				for (i = 1; i <= 6; i++) { 
+				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
+				}
+				y = currency;
+			}else if (x == "+62")	{
+				currency ="USD";
+				document.getElementById("currency1").innerHTML = currency;
+				document.getElementById("currency2").innerHTML = currency;
+				document.getElementById("currency3").innerHTML = currency;
+				document.getElementById("currency4").innerHTML = currency;
+				document.getElementById("currency5").innerHTML = currency;
+				document.getElementById("currency6").innerHTML = currency;
+				document.getElementById("currency7").innerHTML = currency;
+				coinData = { "1": "1", "2": "4", "3": "16", "4": "25", "5": "75", "6": "175" };
+				for (i = 1; i <= 6; i++) { 
+				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
+				}
+				y = currency;
+			}else if (x == "+65")	{
+				currency ="SGD";
+				document.getElementById("currency1").innerHTML = currency;
+				document.getElementById("currency2").innerHTML = currency;
+				document.getElementById("currency3").innerHTML = currency;
+				document.getElementById("currency4").innerHTML = currency;
+				document.getElementById("currency5").innerHTML = currency;
+				document.getElementById("currency6").innerHTML = currency;
+				document.getElementById("currency7").innerHTML = currency;
+				coinData = { "1": "1.30", "2": "5.60", "3": "19.30", "4": "33.30", "5": "100", "6": "233.30" };
+				for (i = 1; i <= 6; i++) { 
+				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
+				}
+				y = currency;
+			}else if (x == "+63")	{
+				currency ="PHP";
+				document.getElementById("currency1").innerHTML = currency;
+				document.getElementById("currency2").innerHTML = currency;
+				document.getElementById("currency3").innerHTML = currency;
+				document.getElementById("currency4").innerHTML = currency;
+				document.getElementById("currency5").innerHTML = currency;
+				document.getElementById("currency6").innerHTML = currency;
+				document.getElementById("currency7").innerHTML = currency;
+				coinData = { "1": "1.30", "2": "5.60", "3": "19.30", "4": "33.30", "5": "100", "6": "233.30" };
+				for (i = 1; i <= 6; i++) { 
+				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
+				}
+				y = currency;				
+			}else{
+				currency ="USD";
+				document.getElementById("currency1").innerHTML = currency;
+				document.getElementById("currency2").innerHTML = currency;
+				document.getElementById("currency3").innerHTML = currency;
+				document.getElementById("currency4").innerHTML = currency;
+				document.getElementById("currency5").innerHTML = currency;
+				document.getElementById("currency6").innerHTML = currency;
+				document.getElementById("currency7").innerHTML = currency;
+				coinData = { "1": "1", "2": "4", "3": "16", "4": "25", "5": "75", "6": "175" };
+				for (i = 1; i <= 6; i++) { 
+				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
+				}
+				y = currency;				
+			}
+			setCookie("currency",y);
+			jQuery("#lblRM").html(" -" );
+			for (i = 0; i < selections.length; i++) {
+                selections[i].className = selections[i].className.replace(" active", "");
+            }
+			document.getElementById('countrycode').addEventListener('change', showDisplayValue, false);
+		}
+			
+			$('select').on('blur focus', function (e) {
+				$(this.options).text(function () {
+					return e.type === 'focus' ? this.getAttribute('data-default-text') : this.value;
+				});
+			}).children().attr('data-default-text', function () {
+					return this.textContent;
+			}).end().on('change', function () {
+						$(this).blur();
+			}).blur();
+			
+			
+			function checkAvailability() {
+				$("#loaderIcon").show();
+				jQuery.ajax({
+				url: "https://api.tamago.live/verify?phone="+$("#txtPhoneNo").val(),
+				data:$("#txtPhoneNo").val(),
+				type: "POST",
+				success:function(data){
+					//console.log(data.data);
+					if (data.data != ''){
+						content = "Your phone number is eligible to pay";
+						$('#phone-status').css('color', 'green');
+						
+					}else{
+						content = "Your phone number is not in our system";
+						$('#phone-status').css('color', 'red');
+					}
+				$("#phone-status").html(content);
+				$("#loaderIcon").hide();
+				},
+				error:function (){}
+				});
+			}
     </script>
 </body>
 
