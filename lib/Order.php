@@ -41,7 +41,7 @@ class Order
 	
 	public function init(){
 		try{
-			$this->value = $_COOKIE['value']*100;
+			$this->value = $_COOKIE['value']*100; //might need to update because of currency
 			$this->amount['value'] = $this->value;
 			$this->currencyCode = $_COOKIE["currency"];
 			$this->amount['currency'] = $this->currencyCode;

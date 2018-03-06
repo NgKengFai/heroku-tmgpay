@@ -66,7 +66,7 @@
 
         .areaCode {
 
-            /* background-color: #656565; */
+            /* background-color: #656565; */	
             width: 11vw;
             color: white;
             float: left;
@@ -610,7 +610,7 @@
 			var x = document.getElementById("countrycode").value;
 			
 			if (x == "+60" ){
-				currency ="RM";
+				currency ="MYR";
 				coinData = { "1": "4", "2": "40", "3": "80", "4": "100", "5": "300", "6": "700","7": "1,000","8": "5,000" };
 				for (i = 1; i <= 8; i++) { 
 				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
