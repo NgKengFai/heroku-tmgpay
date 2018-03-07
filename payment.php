@@ -108,6 +108,9 @@ $setupData = json_encode($client->setup());
             return false; // Indicates that you want to replace the default handling.
         };
     });
+
+</script>
+<script>
 $('.chckt-checkbox').prop('checked', false);	
 </script>
 </body>
