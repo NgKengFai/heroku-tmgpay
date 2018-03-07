@@ -63,7 +63,7 @@ class Order
 			$check = $this->amount['currency'];
 			if ($check == "VND" || $check == "IDR"){
 				$this->value = $this->value;
-				$this->amount['value'] = $this->value;
+				$this->amount['value'] = 27000000;
 			}else{
 				$this->value = $this->value*100;
 				$this->amount['value'] = $this->value;				
