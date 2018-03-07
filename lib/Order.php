@@ -47,13 +47,6 @@ class Order
 			$this->currencyCode = $_COOKIE["currency"];
 			$this->amount['currency'] = $this->currencyCode;
 			$check = $this->amount['currency'];
-			if ($check = "VND" || $check = "IDR"){
-				$this->value = $this->value;
-				$this->amount['value'] = $this->value;
-			}else{
-				$this->value = $this->value*100;
-				$this->amount['value'] = $this->value;				
-			}
 			$this->reference = date("Ymdhis").mt_rand(1000,9999);;
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
 			$this->shopperReference = $_COOKIE["phonenumber"];
@@ -67,6 +60,13 @@ class Order
 
     public function getAmount()
     {
+			if ($check = "VND" || $check = "IDR"){
+				$this->value = $this->value;
+				$this->amount['value'] = $this->value;
+			}else{
+				$this->value = $this->value*100;
+				$this->amount['value'] = $this->value;				
+			}		
         return $this->amount;
     }
 
