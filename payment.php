@@ -110,8 +110,9 @@ $setupData = json_encode($client->setup());
     });
 
 </script>
-<script>
-$('.chckt-checkbox').prop('checked', false);	
+<script type="text/javascript">
+$('.chckt-checkbox').prop('checked', false);
+console.log("Test");
 </script>
 </body>
 </html>
