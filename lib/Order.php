@@ -46,7 +46,8 @@ class Order
 			$this->amount['value'] = $this->value;
 			$this->currencyCode = $_COOKIE["currency"];
 			$this->amount['currency'] = $this->currencyCode;
-			if ($this->amount['currency'] = "VND" || $this->amount['currency'] = "IDR"){
+			$check = $this->amount['currency'];
+			if ($check = "VND" || $tcheck = "IDR"){
 				$this->amount['value'] = $this->amount['value']/100;
 			}
 			$this->reference = date("Ymdhis").mt_rand(1000,9999);;
