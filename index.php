@@ -732,7 +732,8 @@
 								flag = 1;
 									}
 								}else{
-									content = "Your phone number is not in our system";
+									
+									content = "Your phone number is not in our system. Check your area code.";
 									$('#phone-status').css('color', 'red');
 									//$('#submit-button').attr('disabled',true);
 									$('#submit-button').prop('disabled',true).css('background-color', 'grey');
