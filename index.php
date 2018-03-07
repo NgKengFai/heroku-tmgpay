@@ -10,7 +10,7 @@
     <style>
         .backgroundColor {
 
-            max-width: 500px;
+            max-width: 540px;
             font-family: 'Nunito', sans-serif;
             margin-left: auto;
             margin-right: auto;
@@ -733,7 +733,7 @@
 									}
 								}else{
 									
-									content = "Your phone number is not in our system. Check your area code.";
+									content = "Phone number is not in our system. Check your area code.";
 									$('#phone-status').css('color', 'red');
 									//$('#submit-button').attr('disabled',true);
 									$('#submit-button').prop('disabled',true).css('background-color', 'grey');
