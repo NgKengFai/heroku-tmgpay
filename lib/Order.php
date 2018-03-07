@@ -42,14 +42,17 @@ class Order
 	public function init(){
 		try{
 			
-			$this->value = $_COOKIE['value']*100; //might need to update because of currency
+			$this->value = $_COOKIE['value']; //might need to update because of currency
 			$this->amount['value'] = $this->value;
 			$this->currencyCode = $_COOKIE["currency"];
 			$this->amount['currency'] = $this->currencyCode;
 			$check = $this->amount['currency'];
 			if ($check = "VND" || $check = "IDR"){
-				$this->value = $this->value/100;
+				$this->value = $this->value;
 				$this->amount['value'] = $this->value;
+			}else{
+				$this->value = $this->value*100;
+				$this->amount['value'] = $this->value;				
 			}
 			$this->reference = date("Ymdhis").mt_rand(1000,9999);;
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
