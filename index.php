@@ -219,7 +219,7 @@
 
             .topUpCss {
 
-                font-size: 30px;
+                font-size: 26px;
                /*  margin-top: 50px; */
                 margin-bottom: 10px;
             }
@@ -242,14 +242,14 @@
 
             .bottomRow2 {
                 /* margin: 0px 27%; */
-                font-size: 30px;
+                font-size: 25px;
             }
 
             .topUpButton {
 
-                width: 51%;
-                height: 50px;
-                font-size: 28px;
+                width: 47%;
+                height: 48px;
+                font-size: 25px;
             }
 
             .boxCss {
