@@ -96,7 +96,7 @@ $setupData = json_encode($client->setup());
                 success: function (data) {
 					$("#order-id").html("<b>Order ID: </b>"+ data.merchantReference);
                     $("#checkout").html("<b>Payment Status: </b>"+ data.authResponse);
-					$('.chckt-checkbox').prop('checked', false);
+					
                 },
                 error: function () {
                     if (window.console && console.log) {
@@ -108,7 +108,7 @@ $setupData = json_encode($client->setup());
             return false; // Indicates that you want to replace the default handling.
         };
     });
-	
+$('.chckt-checkbox').prop('checked', false);	
 </script>
 </body>
 </html>
