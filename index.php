@@ -95,7 +95,7 @@
 
         .pickAmountCss {
 
-            text-align: left;
+            /* text-align: left; */
             margin: 30px 0px;
             padding-left: 10px;
         }
@@ -412,7 +412,7 @@
                 <span id="currency9">USD</span><span id="lblRM"> 0</span>
             </div>
             <div class="bottomRow3">
-
+				<span id="topup-status"></span>
                 <input type="button" id="submit-button" class="topUpButton" value="Top Up" onclick="topup()" />
             </div>
         </div>
@@ -429,22 +429,25 @@
 					return this.textContent;
 		}).end().on('change', function () {
 						$(this).blur();
-						console.log(document.getElementById("lblRM").innerHTML);
+						//console.log(document.getElementById("lblRM").innerHTML);
+						checkAvailability();
+
 		}).blur();
 		
 		//disable button from the start
-		$('#submit-button').prop('disabled',true).css('opacity',0.5);
+		$('#submit-button').prop('disabled',true).css('background-color', 'grey');
         var selections = jQuery(".boxCss"), txtPhoneNo = jQuery("#txtPhoneNo"), lblRequiredPhoneNumber = jQuery("#lblRequiredPhoneNumber");
         var coinData = { "1": "1", "2": "10", "3": "20", "4": "25", "5": "75", "6": "175", "7": "250","8": "1,250" };
         var currentSelection;
+		var flag;
 		
 		//set cookies function
-					function setCookie(cname,cvalue) {
-						var d = new Date();
-						d.setTime(d.getTime() + (5*60*1000)); //set expiry time for the cookie
-						var expires = "expires=" + d.toGMTString();
-						document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-					}
+		function setCookie(cname,cvalue) {
+			var d = new Date();
+			d.setTime(d.getTime() + (5*60*1000)); //set expiry time for the cookie
+			var expires = "expires=" + d.toGMTString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
 					/*
 					function getCookie(cname) {
 						var name = cname + "=";
@@ -498,45 +501,61 @@
 			//window.sessionStorage.value = "USD";
 			
 			//setCookie("currency","USD");
-			setCookie("value",coinData[type]);
+			setCookie("value",parseFloat(coinData[type].replace(/,/g, '')));
 			//localStorage.setItem("currency","USD");
 			//localStorage.setItem("value",coinData[type]);
-			$('#submit-button').prop('disabled',false).css('opacity',1);
+			$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
         }
 		
 		//the final step
         function topup() {
 			//to change for checking
-			if (document.getElementById("countrycode").value ==''){
-				$('#phone-status').css('color', 'red');
-				$('#submit-button').prop('disabled',true).css('opacity',0.5);
-				content= "Select Your country prefix";
-				$("#phone-status").html(content);
-			}else{
-			//console.log(document.getElementById("lblRM").innerHTML);			
-				if (document.getElementById("lblRM").innerHTML ==' -'){
-					content= "Select your top up value";
-					$("#phone-status").html(content);
-					$('#submit-button').prop('disabled',true).css('opacity',0.5);						
-				}else{
-					$('#submit-button').prop('disabled',false).css('opacity',1);				
-			
-						if (txtPhoneNo.val().length > 0) {
-							var e = document.getElementById("countrycode");
-							var countryCode = e.options[e.selectedIndex].value;
-							//window.sessionStorage.countrycode= countryCode;
-							//window.sessionStorage.phonenumber = txtPhoneNo.val();
-							setCookie("countrycode",countryCode);
-							setCookie("phonenumber",txtPhoneNo.val());				
-							//localStorage.setItem("countrycode",countryCode);
-							//localStorage.setItem("phonenumber",txtPhoneNo.val());
-							window.location.href = "PaymentType.php"; //change to redirect using redirect plugin
-						}else {
+			//checkAvailability();
+			if (flag == 1) {
+				//console.log("Yes");
+				
+				
+						if (document.getElementById("countrycode").value ==''){
+								$('#phone-status').css('color', 'red');
+								$('#submit-button').prop('disabled',true).css('background-color', 'grey');
+								content= "Select Your country prefix";
+								$("#phone-status").html(content);
+							}else{
+							//console.log(document.getElementById("lblRM").innerHTML);			
+								if (document.getElementById("lblRM").innerHTML ==' -'){
+									//console.log("What the fuck going on here");
+									content= "Select your top up value";
+									$('#topup-status').css('display', 'block');
+									$('#topup-status').css('color', 'red');
+									$("#topup-status").html(content);
+									$('#submit-button').prop('disabled',true).css('background-color', 'grey');						
+								}else{
+									$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');				
+									$('#topup-status').css('display', 'none');
+										if (txtPhoneNo.val().length > 0) {
+											var e = document.getElementById("countrycode");
+											var countryCode = e.options[e.selectedIndex].value;
+											//window.sessionStorage.countrycode= countryCode;
+											//window.sessionStorage.phonenumber = txtPhoneNo.val();
+											setCookie("countrycode",countryCode);
+											setCookie("phonenumber",txtPhoneNo.val());				
+											//localStorage.setItem("countrycode",countryCode);
+											//localStorage.setItem("phonenumber",txtPhoneNo.val());
+											window.location.href = "PaymentType.php"; //change to redirect using redirect plugin
+										}else {
 
-							lblRequiredPhoneNumber.show();
-						}
-				}
+											lblRequiredPhoneNumber.show();
+										}
+								}
+					}
+			}else if (flag == 0) {
+			$('#submit-button').prop('disabled',true).css('background-color', 'grey');
+			$('.phoneDiv').css('border', '1px solid red');
+			content="Your phone number is invalid or missing area code";
+			$("#phone-status").html(content);
+			
 			}
+			
         }
 
         $(document).ready(function () {
@@ -656,23 +675,18 @@
 				}
 				y = currency;				
 			}
-				document.getElementById("currency1").innerHTML = currency;
-				document.getElementById("currency2").innerHTML = currency;
-				document.getElementById("currency3").innerHTML = currency;
-				document.getElementById("currency4").innerHTML = currency;
-				document.getElementById("currency5").innerHTML = currency;
-				document.getElementById("currency6").innerHTML = currency;
-				document.getElementById("currency7").innerHTML = currency;
-				document.getElementById("currency8").innerHTML = currency;
-				document.getElementById("currency9").innerHTML = currency;
+				for (j = 1; j <= 9; j++) {
+				document.getElementById("currency"+j).innerHTML = currency;	
+					
+				}
 			
-			//param value
+			//param value for payment
 			setCookie("currency",y);
 			jQuery("#lblRM").html(" -" );
 			for (i = 0; i < selections.length; i++) {
                 selections[i].className = selections[i].className.replace(" active", "");
             }
-			$('#submit-button').prop('disabled',false).css('opacity',1);
+			$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
 			//document.getElementById('countrycode').addEventListener('change', showDisplayValue, false);
 		}
 		
@@ -689,23 +703,60 @@
 				success:function(data){
 					//console.log(data.data);
 					if (data.data != ''){
-						content = "Your phone number is eligible to pay";
-						$('#phone-status').css('color', 'green');
-						//$('#submit-button').attr('disabled',false);
-						$('#submit-button').prop('disabled',false).css('opacity',1);
+						for (i = 0; i < data.data.length; i++){ 
+							if (document.getElementById("countrycode").value == data.data[i].area){
+								//console.log("Yes it matched");
+								if ($("#txtPhoneNo").val() == data.data[i].mobile){
+									//console.log("Con lan firm matched");
+									content = "Your phone number is eligible to pay";
+							$('#phone-status').css('color', 'green');
+							//$('#submit-button').attr('disabled',false);
+							$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
+							flag = 1;
+								}
+							}else{
+								content = "Your phone number is not in our system";
+								$('#phone-status').css('color', 'red');
+								//$('#submit-button').attr('disabled',true);
+								$('#submit-button').prop('disabled',true).css('background-color', 'grey');
+								flag = 0;
+							}
+					
+	
+						}
+						//console.log(document.getElementById("countrycode").value);
+						
 						
 					}else{
+						console.log(data.data);
 						content = "Your phone number is not in our system";
 						$('#phone-status').css('color', 'red');
 						//$('#submit-button').attr('disabled',true);
-						$('#submit-button').prop('disabled',true).css('opacity',0.5);
+						$('#submit-button').prop('disabled',true).css('background-color', 'grey');
+						flag = 0;
 					}
 				$("#phone-status").html(content);
 				$("#loaderIcon").hide();
+						if (flag==1){
+							$('.phoneDiv').css('border', 'none');
+							
+						}				
 				},
 				error:function (){}
 				});
 			}
+			
+		function commafy( num ) {
+			var str = num.toString().split('.');
+			if (str[0].length >= 5) {
+				str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+			}
+			if (str[1] && str[1].length >= 5) {
+				str[1] = str[1].replace(/(\d{3})/g, '$1 ');
+			}
+			return str.join('.');
+		}
+		//console.log(commafy("1000000"));
     </script>
 </body>
 
