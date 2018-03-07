@@ -430,7 +430,10 @@
 		}).end().on('change', function () {
 						$(this).blur();
 						//console.log(document.getElementById("lblRM").innerHTML);
-						checkAvailability();
+						if ($("#txtPhoneNo").val() != ''){
+							checkAvailability();
+						}
+						
 
 		}).blur();
 		
