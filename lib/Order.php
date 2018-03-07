@@ -48,7 +48,8 @@ class Order
 			$this->amount['currency'] = $this->currencyCode;
 			$check = $this->amount['currency'];
 			if ($check = "VND" || $check = "IDR"){
-				$this->amount['value'] = $this->amount['value']/100;
+				$this->value = $this->value/100;
+				$this->amount['value'] = $this->value;
 			}
 			$this->reference = date("Ymdhis").mt_rand(1000,9999);;
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
