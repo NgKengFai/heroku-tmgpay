@@ -41,7 +41,7 @@
             font-size: 7vw;
             color: #333333;
             display: block;
-            margin-top: 30px;
+            /* margin-top: 30px; */
             margin-bottom: 15vw;
             font-weight: bold;
         }
@@ -220,8 +220,8 @@
             .topUpCss {
 
                 font-size: 30px;
-                margin-top: 50px;
-                margin-bottom: 50px;
+               /*  margin-top: 50px; */
+                margin-bottom: 30px;
             }
 
             .areaCode {
@@ -241,7 +241,7 @@
             }
 
             .bottomRow2 {
-                margin: 0px 27%;
+                /* margin: 0px 27%; */
                 font-size: 30px;
             }
 
@@ -255,6 +255,10 @@
             .boxCss {
                 cursor: pointer;
             }
+			
+			.logo{
+				width:20%;
+			}
         }
     </style>
 </head>
@@ -264,8 +268,8 @@
     <div class="backgroundColor">
 
         <div class="text-center">
-
-            <span class="topUpCss">Top Up</span>
+			<img class="logo" src="logo.png">
+            <span class="topUpCss"> </img> Top Up</span>
 
             <div class="phoneDiv">
                 <div class="pull-left areaCode">
@@ -763,6 +767,20 @@
 			return str.join('.');
 		}
 		//console.log(commafy("1000000"));
+		function ISOCountryCode(country){
+			jQuery.ajax({
+				url: "names.json",
+				data: "",
+				type: "POST",
+				success:function(data){
+					Object.entries(data).map(([key, value]) => {
+						if (value === country) console.log(key)
+					})				
+				},
+				error:function (){}
+				});
+		}
+		ISOCountryCode("Malaysia");
     </script>
 </body>
 
