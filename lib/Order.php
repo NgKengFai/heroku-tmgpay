@@ -46,7 +46,7 @@ class Order
 			$this->amount['value'] = $this->value;
 			$this->currencyCode = $_COOKIE["currency"];
 			$this->amount['currency'] = $this->currencyCode;
-			$check = $this->amount['currency'];
+			
 			$this->reference = date("Ymdhis").mt_rand(1000,9999);;
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
 			$this->shopperReference = $_COOKIE["phonenumber"];
@@ -60,6 +60,7 @@ class Order
 
     public function getAmount()
     {
+			$check = $this->amount['currency'];
 			if ($check = "VND" || $check = "IDR"){
 				$this->value = $this->value;
 				$this->amount['value'] = $this->value;
