@@ -259,6 +259,9 @@
 			.logo{
 				width:20%;
 			}
+			#phone-status{
+				font-weight: bold;
+			}
         }
     </style>
 </head>
@@ -518,7 +521,7 @@
 		//the final step
         function topup() {
 			//to change for checking
-			//checkAvailability();
+			checkAvailability();
 			if (flag == 1) {
 				//console.log("Yes");
 				
@@ -560,7 +563,7 @@
 					}
 			}else if (flag == 0) {
 			$('#submit-button').prop('disabled',true).css('background-color', 'grey');
-			$('.phoneDiv').css('border', '1px solid red');
+			$('.phoneDiv').css('border', '2px solid red');
 			content="Your phone number is invalid or missing area code";
 			$("#phone-status").html(content);
 			
