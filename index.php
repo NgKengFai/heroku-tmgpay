@@ -508,6 +508,7 @@
 			//localStorage.setItem("currency","USD");
 			//localStorage.setItem("value",coinData[type]);
 			$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
+						
         }
 		
 		//the final step
@@ -541,7 +542,9 @@
 											//window.sessionStorage.countrycode= countryCode;
 											//window.sessionStorage.phonenumber = txtPhoneNo.val();
 											setCookie("countrycode",countryCode);
-											setCookie("phonenumber",txtPhoneNo.val());				
+											phone = document.getElementById("countrycode").value + txtPhoneNo.val();
+											//console.log(phone);
+											setCookie("phonenumber",phone);				
 											//localStorage.setItem("countrycode",countryCode);
 											//localStorage.setItem("phonenumber",txtPhoneNo.val());
 											window.location.href = "PaymentType.php"; //change to redirect using redirect plugin
