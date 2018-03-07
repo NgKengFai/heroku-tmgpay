@@ -705,7 +705,11 @@
 			
 			
 			function checkAvailability() {
-				$("#loaderIcon").show();
+				if ($("#txtPhoneNo").val() !=''){
+					
+					$("#loaderIcon").show();
+				}
+				
 				jQuery.ajax({
 				url: "https://api.tamago.live/verify?phone="+$("#txtPhoneNo").val(),
 				data:$("#txtPhoneNo").val(),
