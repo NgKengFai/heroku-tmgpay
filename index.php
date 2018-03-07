@@ -96,7 +96,7 @@
         .pickAmountCss {
 
             /* text-align: left; */
-            margin: 30px 0px;
+            margin-top: 30px;
             padding-left: 10px;
         }
 
