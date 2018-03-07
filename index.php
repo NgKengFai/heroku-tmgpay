@@ -27,7 +27,7 @@
             height: 55px;
             text-align: center;
             border: solid 1px #E9E9E9;
-            margin: 8px 6px;
+            margin: 4px 6px;
             border-radius: 3px;
         }
 
@@ -95,8 +95,8 @@
 
         .pickAmountCss {
 
-            /* text-align: left; */
-            margin: 30px 0px;
+            /* text-align: left; 
+            margin: 30px 0px;*/
             padding-left: 10px;
         }
 
@@ -138,7 +138,7 @@
         .bottomRow1 {
 
             font-size: 6vw;
-            padding-top: 30px;
+            padding-top: 15px;
             padding-bottom: 5px;
         }
 
@@ -221,7 +221,7 @@
 
                 font-size: 30px;
                /*  margin-top: 50px; */
-                margin-bottom: 30px;
+                margin-bottom: 10px;
             }
 
             .areaCode {
