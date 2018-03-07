@@ -111,7 +111,8 @@ $setupData = json_encode($client->setup());
 
 </script>
 <script type="text/javascript">
-$('.chckt-checkbox').prop('checked', "false");
+//$('.chckt-checkbox').prop('checked', "false");
+document.querySelector('.chckt-checkbox').setAttribute('checked', 'false');
 console.log("Test");
 </script>
 </body>
