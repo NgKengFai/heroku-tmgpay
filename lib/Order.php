@@ -61,7 +61,7 @@ class Order
     public function getAmount()
     {
 			$check = $this->amount['currency'];
-			if ($check = "VND" || $check = "IDR"){
+			if ($check == "VND" || $check == "IDR"){
 				$this->value = $this->value;
 				$this->amount['value'] = $this->value;
 			}else{
