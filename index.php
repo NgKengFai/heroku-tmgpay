@@ -711,56 +711,61 @@
 				if ($("#txtPhoneNo").val() !=''){
 					
 					$("#loaderIcon").show();
-				}
 				
-				jQuery.ajax({
-				url: "https://api.tamago.live/verify?phone="+$("#txtPhoneNo").val(),
-				data:$("#txtPhoneNo").val(),
-				type: "POST",
-				success:function(data){
-					//console.log(data.data);
-					if (data.data != ''){
-						for (i = 0; i < data.data.length; i++){ 
-							if (document.getElementById("countrycode").value == data.data[i].area){
-								//console.log("Yes it matched");
-								if ($("#txtPhoneNo").val() == data.data[i].mobile){
-									//console.log("Con lan firm matched");
-									content = "Your phone number is eligible to pay";
-							$('#phone-status').css('color', 'green');
-							//$('#submit-button').attr('disabled',false);
-							$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
-							flag = 1;
+				
+					jQuery.ajax({
+					url: "https://api.tamago.live/verify?phone="+$("#txtPhoneNo").val(),
+					data:$("#txtPhoneNo").val(),
+					type: "POST",
+					success:function(data){
+						//console.log(data.data);
+						if (data.data != ''){
+							for (i = 0; i < data.data.length; i++){ 
+								if (document.getElementById("countrycode").value == data.data[i].area){
+									//console.log("Yes it matched");
+									if ($("#txtPhoneNo").val() == data.data[i].mobile){
+										//console.log("Con lan firm matched");
+										content = "Your phone number is eligible to pay";
+								$('#phone-status').css('color', 'green');
+								//$('#submit-button').attr('disabled',false);
+								$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
+								flag = 1;
+									}
+								}else{
+									content = "Your phone number is not in our system";
+									$('#phone-status').css('color', 'red');
+									//$('#submit-button').attr('disabled',true);
+									$('#submit-button').prop('disabled',true).css('background-color', 'grey');
+									flag = 0;
 								}
-							}else{
-								content = "Your phone number is not in our system";
-								$('#phone-status').css('color', 'red');
-								//$('#submit-button').attr('disabled',true);
-								$('#submit-button').prop('disabled',true).css('background-color', 'grey');
-								flag = 0;
+						
+		
 							}
-					
-	
-						}
-						//console.log(document.getElementById("countrycode").value);
-						
-						
-					}else{
-						console.log(data.data);
-						content = "Your phone number is not in our system";
-						$('#phone-status').css('color', 'red');
-						//$('#submit-button').attr('disabled',true);
-						$('#submit-button').prop('disabled',true).css('background-color', 'grey');
-						flag = 0;
-					}
-				$("#phone-status").html(content);
-				$("#loaderIcon").hide();
-						if (flag==1){
-							$('.phoneDiv').css('border', 'none');
+							//console.log(document.getElementById("countrycode").value);
 							
-						}				
-				},
-				error:function (){}
-				});
+							
+						}else{
+							console.log(data.data);
+							content = "Your phone number is not in our system";
+							$('#phone-status').css('color', 'red');
+							//$('#submit-button').attr('disabled',true);
+							$('#submit-button').prop('disabled',true).css('background-color', 'grey');
+							flag = 0;
+						}
+					$("#phone-status").html(content);
+					$("#loaderIcon").hide();
+							if (flag==1){
+								$('.phoneDiv').css('border', 'none');
+								
+							}				
+					},
+					error:function (){}
+					});
+				}else{
+					content = "You forgot to insert your phone number";
+					$('#phone-status').css('color', 'red');
+					$("#phone-status").html(content);
+				}
 			}
 			
 		function commafy( num ) {
