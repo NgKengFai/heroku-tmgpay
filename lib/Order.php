@@ -41,10 +41,14 @@ class Order
 	
 	public function init(){
 		try{
+			
 			$this->value = $_COOKIE['value']*100; //might need to update because of currency
 			$this->amount['value'] = $this->value;
 			$this->currencyCode = $_COOKIE["currency"];
 			$this->amount['currency'] = $this->currencyCode;
+			if ($this->amount['currency'] = "VND" || $this->amount['currency'] = "IDR"){
+				$this->amount['value'] = $this->amount['value']/100;
+			}
 			$this->reference = date("Ymdhis").mt_rand(1000,9999);;
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
 			$this->shopperReference = $_COOKIE["phonenumber"];
