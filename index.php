@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+	<script src="jquery.redirect.js"></script>
     <style>
         .backgroundColor {
 
@@ -446,12 +446,14 @@
 		
 		//disable button from the start
 		$('#submit-button').prop('disabled',true).css('background-color', 'grey');
+		
+		//init params
         var selections = jQuery(".boxCss"), txtPhoneNo = jQuery("#txtPhoneNo"), lblRequiredPhoneNumber = jQuery("#lblRequiredPhoneNumber");
         var coinData = { "1": "1", "2": "10", "3": "20", "4": "25", "5": "75", "6": "175", "7": "250","8": "1,250" };
         var currentSelection;
 		var flag;
 		
-		//set cookies function
+		//set cookies function - will removing it because of cookie injection
 		function setCookie(cname,cvalue) {
 			var d = new Date();
 			d.setTime(d.getTime() + (5*60*1000)); //set expiry time for the cookie
@@ -486,7 +488,9 @@
 						   }
 						}
 					}*/
-        (function () {
+       
+		//i dunno why kangbao need this, no idea
+	   (function () {
 
             Init()
         })();
@@ -495,7 +499,8 @@
 
             //selections[0].click();
         }
-
+		
+		//selection to change display payment value
         function select(evt, type) {
 			
 			currencyChange();
@@ -512,10 +517,9 @@
 			//window.sessionStorage.currency = coinData[type];
 			//window.sessionStorage.value = "USD";
 			
-			//setCookie("currency","USD");
+			
+			//for payment steps but will migrate to post method
 			setCookie("value",parseFloat(coinData[type].replace(/,/g, '')));
-			//localStorage.setItem("currency","USD");
-			//localStorage.setItem("value",coinData[type]);
 			$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
 						
         }
@@ -524,10 +528,12 @@
         function topup() {
 			//to change for checking
 			checkAvailability();
+			
+			//flag from found phone numbers
 			if (flag == 1) {
-				//console.log("Yes");
 				
 				
+						//whether data is empty
 						if (document.getElementById("countrycode").value ==''){
 								$('#phone-status').css('color', 'red');
 								$('#submit-button').prop('disabled',true).css('background-color', 'grey');
@@ -572,7 +578,8 @@
 			}
 			
         }
-
+		
+		//dynamically checks for key strokes
         $(document).ready(function () {
             $("#txtPhoneNo").keydown(function (e) {
 
@@ -639,6 +646,7 @@
 
 		//document.getElementById('countrycode').addEventListener('change', showDisplayValue, false);
 		
+		//changes currency and paying values as per operation
 		function currencyChange(){
 			
 			var x = document.getElementById("countrycode").value;
@@ -695,7 +703,7 @@
 					
 				}
 			
-			//param value for payment
+			//param value for payment - migrate to post method
 			setCookie("currency",y);
 			jQuery("#lblRM").html(" -" );
 			for (i = 0; i < selections.length; i++) {
@@ -705,6 +713,7 @@
 			//document.getElementById('countrycode').addEventListener('change', showDisplayValue, false);
 		}
 		
+		//test whether leading zero exist in phone number
 			function testzeroes(e){
 				
 								var regExp = /^0[0-9]/;
@@ -714,7 +723,7 @@
 			}
 
 			
-			
+			//checks whether phone number is available in db - not sure api is sanitize but i trust George did it
 			function checkAvailability() {
 				
 				if (testzeroes() ==true){
@@ -785,6 +794,7 @@
 				}
 			}
 			
+		//useless commafy which I dont need it 	
 		function commafy( num ) {
 			var str = num.toString().split('.');
 			if (str[0].length >= 5) {
@@ -795,7 +805,8 @@
 			}
 			return str.join('.');
 		}
-		//console.log(commafy("1000000"));
+		
+        //ISO Country Code for later param to parse to Adyen, currently using user IP for payment, might need to implement in post data		
 		function ISOCountryCode(country){
 			jQuery.ajax({
 				url: "names.json",
@@ -809,7 +820,7 @@
 				error:function (){}
 				});
 		}
-		ISOCountryCode("Malaysia");
+		//ISOCountryCode("Malaysia");
     </script>
 </body>
 
