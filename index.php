@@ -305,7 +305,7 @@
 					</select> 
                 </div>
                 <div>
-                    <input type="text" id="txtPhoneNo" class="txtPhoneNoCss" placeholder="Phone Number" maxlength="12" onBlur="checkAvailability()"/>
+                    <input type="text" id="txtPhoneNo" class="txtPhoneNoCss" placeholder="Phone Number without zero in front" maxlength="12" onBlur="checkAvailability()"/>
 					<p><span id="phone-status"></span></p>
                 </div>
 				<p><img src="LoaderIcon.gif" id="loaderIcon" style="display:none" /></p>
@@ -703,69 +703,83 @@
 			//document.getElementById('countrycode').addEventListener('change', showDisplayValue, false);
 		}
 		
-			
+			function testzeroes(e){
+				
+								var regExp = /^0[0-9]/;
+					e = regExp.test($("#txtPhoneNo").val());
+				
+				return e;
+			}
 
 			
 			
 			function checkAvailability() {
-				if ($("#txtPhoneNo").val() !=''){
-					
-					$("#loaderIcon").show();
 				
+				if (testzeroes() ==true){
+							content = "Please remove your first zero in your phone number";
+							$('#phone-status').css('color', 'red');
+							$("#phone-status").html(content);					
+				}else{
+ 
+						if ($("#txtPhoneNo").val() !=''){
+							
+							$("#loaderIcon").show();
+						
+						
+							jQuery.ajax({
+							url: "https://api.tamago.live/verify?phone="+$("#txtPhoneNo").val(),
+							data:$("#txtPhoneNo").val(),
+							type: "POST",
+							success:function(data){
+								//console.log(data.data);
+								if (data.data != ''){
+									for (i = 0; i < data.data.length; i++){ 
+										if (document.getElementById("countrycode").value == data.data[i].area){
+											//console.log("Yes it matched");
+											if ($("#txtPhoneNo").val() == data.data[i].mobile){
+												//console.log("Con lan firm matched");
+												content = "Your phone number is eligible to pay";
+										$('#phone-status').css('color', 'green');
+										//$('#submit-button').attr('disabled',false);
+										$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
+										flag = 1;
+											}
+										}else{
+											
+											content = "Phone number is not in our system. Check your area code.";
+											$('#phone-status').css('color', 'red');
+											//$('#submit-button').attr('disabled',true);
+											$('#submit-button').prop('disabled',true).css('background-color', 'grey');
+											flag = 0;
+										}
+								
 				
-					jQuery.ajax({
-					url: "https://api.tamago.live/verify?phone="+$("#txtPhoneNo").val(),
-					data:$("#txtPhoneNo").val(),
-					type: "POST",
-					success:function(data){
-						//console.log(data.data);
-						if (data.data != ''){
-							for (i = 0; i < data.data.length; i++){ 
-								if (document.getElementById("countrycode").value == data.data[i].area){
-									//console.log("Yes it matched");
-									if ($("#txtPhoneNo").val() == data.data[i].mobile){
-										//console.log("Con lan firm matched");
-										content = "Your phone number is eligible to pay";
-								$('#phone-status').css('color', 'green');
-								//$('#submit-button').attr('disabled',false);
-								$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
-								flag = 1;
 									}
-								}else{
+									//console.log(document.getElementById("countrycode").value);
 									
-									content = "Phone number is not in our system. Check your area code.";
+									
+								}else{
+									console.log(data.data);
+									content = "Your phone number is not in our system";
 									$('#phone-status').css('color', 'red');
 									//$('#submit-button').attr('disabled',true);
 									$('#submit-button').prop('disabled',true).css('background-color', 'grey');
 									flag = 0;
 								}
-						
-		
-							}
-							//console.log(document.getElementById("countrycode").value);
-							
-							
+							$("#phone-status").html(content);
+							$("#loaderIcon").hide();
+									if (flag==1){
+										$('.phoneDiv').css('border', 'none');
+										
+									}				
+							},
+							error:function (){}
+							});
 						}else{
-							console.log(data.data);
-							content = "Your phone number is not in our system";
+							content = "You forgot to insert your phone number";
 							$('#phone-status').css('color', 'red');
-							//$('#submit-button').attr('disabled',true);
-							$('#submit-button').prop('disabled',true).css('background-color', 'grey');
-							flag = 0;
+							$("#phone-status").html(content);
 						}
-					$("#phone-status").html(content);
-					$("#loaderIcon").hide();
-							if (flag==1){
-								$('.phoneDiv').css('border', 'none');
-								
-							}				
-					},
-					error:function (){}
-					});
-				}else{
-					content = "You forgot to insert your phone number";
-					$('#phone-status').css('color', 'red');
-					$("#phone-status").html(content);
 				}
 			}
 			
