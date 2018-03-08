@@ -497,6 +497,8 @@
         }
 
         function select(evt, type) {
+			
+			currencyChange();
 
             for (i = 0; i < selections.length; i++) {
                 selections[i].className = selections[i].className.replace(" active", "");
