@@ -40,7 +40,7 @@ class Client
             'shopperReference' => $order->getShopperReference(),
             'shopperLocale' => $order->getShopperLocale(),
             'reference' => $order->getReference(),
-			'enableOneClickBoolean' => false,
+			'enableOneClick' => false,
 			//'shopper.telephoneNumber'=> , //modded
 
             /** All server specific settings can be found in config/Config.php */
