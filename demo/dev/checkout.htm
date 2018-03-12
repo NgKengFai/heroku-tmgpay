@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../dist/checkout.js" data-paypal-checkout data-env="demo"></script>
+</head>
+
+<body>
+    <button id="paypal-pay">Pay</button><br />
+    <button id="paypal-cancel">Cancel</button><br />
+    <button id="paypal-popout">Popout</button><br />
+
+    <script>
+        window.xprops.init({
+            paymentToken: 'EC-XXXXXXXXXXXXXXXXX',
+            cancelUrl: 'http://google.com?action=cancel&token=EC-XXXXXXXXXXXXXXXXX'
+        });
+
+        document.querySelector('#paypal-pay').addEventListener('click', function() {
+            window.xprops.onAuthorize({
+                paymentToken: 'EC-XXXXXXXXXX',
+                paymentID: 'PAY-XXXXXXXXXXXXXXXX',
+                returnUrl: 'http://google.com?action=return&token=EC-XXXXXXXXXXXXXXXXX&PayerID=YYYYYYYYYYYYYYYYY',
+                cancelUrl: 'http://google.com?action=cancel&token=EC-XXXXXXXXXXXXXXXXX'
+            });
+        });
+
+        document.querySelector('#paypal-cancel').addEventListener('click', function() {
+            window.xprops.onCancel({
+                paymentToken: 'EC-XXXXXXXXXX',
+                paymentID: 'PAY-XXXXXXXXXXXXXXXX',
+                returnUrl: 'http://google.com?action=return&token=EC-XXXXXXXXXXXXXXXXX&PayerID=YYYYYYYYYYYYYYYYY',
+                cancelUrl: 'http://google.com?action=cancel&token=EC-XXXXXXXXXXXXXXXXX'
+            });
+        });
+
+        document.querySelector('#paypal-popout').addEventListener('click', function() {
+            window.xchild.hide();
+            paypal.Checkout.renderTo(window.top, {
+                env: window.xprops.env,
+                payment: window.xprops.payment,
+                onAuthorize: window.xprops.onAuthorize
+            });
+        });
+    </script>
+
+</body>
