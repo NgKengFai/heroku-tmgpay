@@ -366,7 +366,14 @@
     </div>
 	
     <script>
-	
+	if (getCookie("currency")=="VND"){
+		var value = getCookie("value")*100;
+		
+	}else if (getCookie("currency") == "IDR"){
+		var value = getCookie("value")*100;
+	} else {
+		var value = getCookie("value");	
+	}
 			paypal.Button.render({
 
             env: 'sandbox', // sandbox | production
@@ -389,7 +396,7 @@
                     payment: {
                         transactions: [
                             {
-                                amount: { total: getCookie("value"), currency: getCookie("currency") }
+                                amount: { total: value, currency: getCookie("currency") }
                             }
                         ]
                     }
