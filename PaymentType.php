@@ -367,10 +367,10 @@
 	
     <script>
 	if (getCookie("currency")=="VND"){
-		var value = getCookie("value")*100;
+		var value = getCookie("value");
 		
 	}else if (getCookie("currency") == "IDR"){
-		var value = getCookie("value")*100;
+		var value = getCookie("value");
 	} else {
 		var value = getCookie("value");	
 	}
@@ -381,7 +381,7 @@
             // PayPal Client IDs - replace with your own
             // Create a PayPal app: https://developer.paypal.com/developer/applications/create
             client: {
-                sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+                sandbox:    'AXgrVs0H9QureJhIGNHrkTuQKWSnw3Yf0T82hi7DpiJpMAwbJ_8h6t-rAcasVZHiPC5J3X2DvekefJRq',
                 production: '<insert production client id>'
             },
 
