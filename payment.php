@@ -34,7 +34,7 @@ require_once __DIR__ . '/lib/Client.php';
     <title>Adyen Checkout Page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript"
-            src="https://checkoutshopper-test.adyen.com/checkoutshopper/assets/js/sdk/checkoutSDK.1.2.0.min.js"></script>
+            src="https://checkoutshopper-test.adyen.com/checkoutshopper/assets/js/sdk/checkoutSDK.1.2.1.min.js"></script>
     <script src="assets/js/setupCall.js" type="text/javascript"></script>
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
