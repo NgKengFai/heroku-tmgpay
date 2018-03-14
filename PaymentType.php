@@ -337,9 +337,9 @@
                 </div>
             </div>
 
-            <div class="clearBoth"></div>
+<!--            <div class="clearBoth"></div>
 
-<!--             <div class="boxCss pull-left" onclick="select(event, 3)">
+             <div class="boxCss pull-left" onclick="select(event, 3)">
                 <div class="pull-left">
                     <div class="checkBox">
                     </div>
@@ -348,8 +348,8 @@
 <!--                 <div class="selectionOuter pull-left">
                     <span class="spanTitle">Online Banking</span>
                     <br />
-                    <span class="rmCss">Online Banking</span>
-                </div> -->
+                    <span class="rmCss">Online Banking</span>-->
+                </div> 
             </div>
         </div>
 
