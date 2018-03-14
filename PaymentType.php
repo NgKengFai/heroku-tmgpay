@@ -270,7 +270,7 @@
 
             .topUpButton {
 
-                width: 65%;
+                width: 30%;
                 height: 50px;
                 font-size: 30px;
             }
