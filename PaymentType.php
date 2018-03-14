@@ -345,11 +345,11 @@
                     </div>
                 </div>
 
-                <div class="selectionOuter pull-left">
+<!--                 <div class="selectionOuter pull-left">
                     <span class="spanTitle">Online Banking</span>
                     <br />
                     <span class="rmCss">Online Banking</span>
-                </div>
+                </div> -->
             </div>
         </div>
 
