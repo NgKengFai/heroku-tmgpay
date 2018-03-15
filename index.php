@@ -559,7 +559,7 @@
 											setCookie("countrycode",countryCode);
 											phone = document.getElementById("countrycode").value + txtPhoneNo.val();
 											//console.log(phone);
-											setCookie("phonenumber",phone);				
+											setCookie("phonenumber",phone);setCookie("select",currentSelection)				
 											//localStorage.setItem("countrycode",countryCode);
 											//localStorage.setItem("phonenumber",txtPhoneNo.val());
 											window.location.href = "PaymentType.php"; //change to redirect using redirect plugin

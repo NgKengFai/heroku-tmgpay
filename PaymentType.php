@@ -366,14 +366,8 @@
     </div>
 	
     <script>
-	if (getCookie("currency")=="VND"){
-		var value = getCookie("value");
-		
-	}else if (getCookie("currency") == "IDR"){
-		var value = getCookie("value");
-	} else {
-		var value = getCookie("value");	
-	}
+	
+
 			paypal.Button.render({
 
             env: 'sandbox', // sandbox | production
@@ -396,7 +390,7 @@
                     payment: {
                         transactions: [
                             {
-                                amount: { total: value, currency: getCookie("currency") }
+                                amount: { total: value, currency: currency }
                             }
                         ]
                     }
@@ -409,6 +403,7 @@
                 // Make a call to the REST api to execute the payment
                 return actions.payment.execute().then(function() {
                     window.alert('Payment Complete!');
+					deleteAllCookies();
                 });
             },
 			
@@ -449,6 +444,21 @@
 						}
 						return "";
 					}
+		//delete cookie
+			function delete_cookie(name) {
+				document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+			}
+			
+			function deleteAllCookies() {
+				var cookies = document.cookie.split(";");
+
+				for (var i = 0; i < cookies.length; i++) {
+					var cookie = cookies[i];
+					var eqPos = cookie.indexOf("=");
+					var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+					document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+			}
+}
 
         function select(evt, type) {
 
@@ -467,6 +477,19 @@
 					document.getElementById("paypal-header").style.display = 'block';
 					document.getElementById("paypal-button-container").style.display = 'block';
 					//document.getElementById("payment").style.display = 'none';
+					value = getCookie("value");
+					select = getCookie("select");
+					
+					coinData = { "1": "1", "2": "10", "3": "20", "4": "25", "5": "75", "6": "175", "7": "250","8": "1,250" };
+						if (getCookie("currency")=="VND"){
+							currency ="USD";
+							value = coinData[select];
+						}else if (getCookie("currency") == "IDR"){
+							currency ="USD";
+							value = coinData[select];
+						} else {
+							currency = getCookie("currency");
+						}
 				}else{
 				console.log(currentSelection);
 				document.getElementById("btnPay").style.display = 'inline';
