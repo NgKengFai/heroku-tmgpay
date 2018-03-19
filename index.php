@@ -8,6 +8,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 	<script src="jquery.redirect.js"></script>
     <style>
+	body {
+	    padding: 32px;
+	}
+
         .backgroundColor {
 
             max-width: 540px;

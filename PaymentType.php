@@ -104,7 +104,7 @@
 
             position: relative;
             font-size: 4vw;
-            margin-left: 2vw;
+            margin-left: 20px;
             width: 75%;
         }
 
@@ -524,4 +524,4 @@
     </script>
 </body>
 
-</html>
+</html></html>
