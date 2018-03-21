@@ -40,7 +40,8 @@ class Client
             'shopperReference' => $order->getShopperReference(),
             'shopperLocale' => $order->getShopperLocale(),
             'reference' => $order->getReference(),
-			'enableOneClick' => false,
+            'enableOneClick' => false,
+            'brandCode' => 'molpay_ebanking_fpx_MY',
 			//'shopper.telephoneNumber'=> , //modded
 
             /** All server specific settings can be found in config/Config.php */
