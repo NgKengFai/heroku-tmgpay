@@ -41,7 +41,7 @@ class Client
             'shopperLocale' => $order->getShopperLocale(),
             'reference' => $order->getReference(),
             'enableOneClick' => false,
-            'brandCode' => 'molpay_ebanking_fpx_MY',
+            'additionalData' => $this->additionalData(),
 			//'shopper.telephoneNumber'=> , //modded
 
             /** All server specific settings can be found in config/Config.php */
@@ -58,6 +58,13 @@ class Client
 
         return $this->doPostRequest($url, $data, $authentication);
 
+    }
+
+    public function additionalData(){
+        $additionalData = array(
+            'brandCode' => 'molpay_ebanking_fpx_MY' 
+        );
+        return $additionalData;
     }
 
     public function verify($data)
