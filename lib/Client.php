@@ -64,7 +64,7 @@ class Client
         $additionalData = array(
             'brandCode' => 'molpay_ebanking_fpx_MY' 
         );
-        return $additionalData;
+        return $this->additionalData;
     }
 
     public function verify($data)
