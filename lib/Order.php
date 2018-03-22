@@ -51,7 +51,7 @@ class Order
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
 			$this->shopperReference = $_COOKIE["phonenumber"];
 			//$this->countryCode = $_COOKIE["countrycode"];
-			$this->countryCode = 'MY';
+			$this->countryCode = 'VN';
 		}
 		catch(Exception $e){
 			echo "ERROR: ".$e;
