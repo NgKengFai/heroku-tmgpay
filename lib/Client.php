@@ -41,7 +41,7 @@ class Client
             'shopperLocale' => $order->getShopperLocale(),
             'reference' => $order->getReference(),
             'enableOneClick' => false,
-            'additionalData' => $this->additionalData(),
+            //'additionalData' => $this->additionalData(),
 			//'shopper.telephoneNumber'=> , //modded
 
             /** All server specific settings can be found in config/Config.php */
