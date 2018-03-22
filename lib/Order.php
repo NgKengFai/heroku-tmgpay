@@ -50,8 +50,8 @@ class Order
 			$this->reference = date("Ymdhis").mt_rand(1000,9999);;
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
 			$this->shopperReference = $_COOKIE["phonenumber"];
-			$this->countryCode = $_COOKIE["countrycode"];
-			
+			//$this->countryCode = $_COOKIE["countrycode"];
+			$this->countryCode = 'MY';
 		}
 		catch(Exception $e){
 			echo "ERROR: ".$e;
