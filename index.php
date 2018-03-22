@@ -657,6 +657,7 @@
 			
 			if (x == "+60" ){
 				currency ="MYR";
+                cCode = 'MY';
 				coinData = { "1": "4", "2": "40", "3": "80", "4": "100", "5": "300", "6": "700","7": "1,000","8": "5,000" };
 				for (i = 1; i <= 8; i++) { 
 				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
@@ -665,6 +666,7 @@
 			}else if (x == "+84")	{
 				//vietnam
 				currency ="VND";
+                cCode = 'VN';
 				coinData = { "1": "21,600", "2": "216,000", "3": "432,000", "4": "540,000", "5": "1,620,000", "6": "3,780,000", "7": "5,400,000","8": "27,000,000" };
 				for (i = 1; i <= 8; i++) { 
 				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
@@ -673,6 +675,7 @@
 			}else if (x == "+62")	{
 				//indonesia
 				currency ="IDR";
+                cCode = 'ID';
 				coinData = { "1": "13,200", "2": "132,000", "3": "264,000", "4": "330,000", "5": "990,000", "6": "2,310,000","7": "3,300,000","8": "16,500,000" };
 				for (i = 1; i <= 8; i++) { 
 				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
@@ -681,6 +684,7 @@
 			}else if (x == "+65")	{
 				//singapore
 				currency ="SGD";
+                cCode = 'SG';
 				coinData = { "1": "1.50", "2": "13", "3": "25", "4": "35", "5": "100", "6": "230", "7": "330","8": "1,650" };
 				for (i = 1; i <= 8; i++) { 
 				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
@@ -689,6 +693,7 @@
 			}else if (x == "+63")	{
 				//phil
 				currency ="PHP";
+                cCode = 'PH';
 				coinData = { "1": "50", "2": "500", "3": "995", "4": "1,245", "5": "3,730", "6": "8,700","7": "12,450","8": "62,100" };
 				for (i = 1; i <= 8; i++) { 
 				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
@@ -696,6 +701,7 @@
 				y = currency;				
 			}else{
 				currency ="USD";
+                cCode = '';
 				coinData = { "1": "1", "2": "10", "3": "20", "4": "25", "5": "75", "6": "175", "7": "250","8": "1,250" };
 				for (i = 1; i <= 8; i++) {					
 				document.getElementById("payvalue"+ i).innerHTML = coinData[i];
@@ -709,6 +715,7 @@
 			
 			//param value for payment - migrate to post method
 			setCookie("currency",y);
+            setCookie('cCode',cCode);
 			jQuery("#lblRM").html(" -" );
 			for (i = 0; i < selections.length; i++) {
                 selections[i].className = selections[i].className.replace(" active", "");
