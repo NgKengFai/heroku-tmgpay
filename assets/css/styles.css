@@ -1,0 +1,253 @@
+body {
+  padding: 32px;
+}
+
+.backgroundColor {
+  max-width: 540px;
+  font-family: "Nunito", sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.clearBoth {
+  clear: both;
+}
+
+.boxCss {
+  min-width: 45%;
+  height: 55px;
+  text-align: center;
+  border: solid 1px #e9e9e9;
+  margin: 4px 6px;
+  border-radius: 3px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.topUpCss {
+  font-size: 7vw;
+  color: #333333;
+  display: block;
+  /* margin-top: 30px; */
+  margin-bottom: 15vw;
+  font-weight: bold;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.phoneDiv {
+  background-color: whitesmoke;
+  border-radius: 5px;
+  margin: 10px 8%;
+  height: 35px;
+}
+
+.areaCode {
+  /* background-color: #656565; */
+  width: 11vw;
+  color: white;
+  float: left;
+  height: 22px;
+  margin: 7px 10px;
+}
+
+.areaCode span {
+  padding-top: 2px;
+  display: block;
+}
+
+.txtPhoneNoCss {
+  margin-top: 6px;
+  width: 70%;
+  background-color: transparent;
+  border: none;
+  height: 20px;
+}
+
+.txtPhoneNoCss:focus {
+  outline: none;
+}
+
+.pickAmountCss {
+  /* text-align: left; */
+  margin-top: 30px;
+  padding-left: 10px;
+}
+
+.selectionOuter {
+  position: relative;
+  font-size: 4.5vw;
+}
+
+.selectionOuter span {
+  margin-top: 2vw;
+  display: inline-block;
+}
+
+.selection {
+  width: 25px;
+  position: absolute;
+  left: -1px;
+  display: none;
+}
+
+.icon-coin {
+  width: 7.5vw;
+  position: absolute;
+  right: 5px;
+  top: 12px;
+}
+
+.bottomDiv {
+  clear: both;
+  text-align: center;
+  /* min-height: 200px; */
+}
+
+.bottomRow1 {
+  font-size: 6vw;
+  padding-top: 15px;
+  padding-bottom: 5px;
+}
+
+.bottomRow2 {
+  margin: 0 18%;
+  padding: 10px;
+  border: solid 1px #e9e9e9;
+  border-radius: 3px;
+  color: #fc382a;
+  font-weight: bold;
+  font-size: 8vw;
+}
+
+.bottomRow3 {
+  padding-top: 20px;
+}
+
+.topUpButton {
+  background-color: #5ebfb8;
+  border-radius: 5px;
+  color: white;
+  width: 55%;
+  height: 12vw;
+  font-size: 6vw;
+  border: 0px;
+  cursor: pointer;
+}
+
+.rmCss {
+  color: #999999;
+  margin-top: 0 !important;
+}
+
+.active {
+  border-color: #fc382a;
+}
+
+.active .selectionOuter span {
+  color: #fc382a;
+}
+
+.active .selection {
+  display: block;
+}
+
+.requiredPhoneNumber {
+  color: red;
+  display: none;
+}
+
+.bottomRow1 {
+  font-size: 20px;
+}
+
+@media only screen and (min-width: 360px) {
+  .selectionOuter span {
+    margin-top: 1vw;
+  }
+
+  .selectionOuter {
+    font-size: 4vw;
+  }
+
+  .logo{
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .topUpCss {
+    font-size: 26px;
+    /*  margin-top: 50px; */
+    margin-bottom: 10px;
+  }
+
+  .areaCode {
+    width: 50px;
+  }
+
+  .selectionOuter span {
+    margin-top: 3px;
+  }
+
+  .selectionOuter {
+    font-size: 18px;
+  }
+
+  .icon-coin {
+    width: 30px;
+  }
+
+  .bottomRow2 {
+    /* margin: 0px 27%; */
+    font-size: 25px;
+  }
+
+  .topUpButton {
+    width: 47%;
+    height: 48px;
+    font-size: 25px;
+  }
+
+  .boxCss {
+    cursor: pointer;
+  }
+
+  .logo {
+    width: 20%;
+  }
+  #phone-status {
+    font-weight: bold;
+    display: block;
+  }
+}
+
+.userImg {
+  text-align: center;
+}
+
+.userName {
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+}
+
+.redeemMessage {
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+}
+
+.redeemStatus {
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  color: green;
+}
