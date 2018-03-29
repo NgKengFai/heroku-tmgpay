@@ -229,6 +229,7 @@ body {
   #phone-status {
     font-weight: bold;
     display: block;
+    font-size: 10px;
   }
 }
 
@@ -258,7 +259,7 @@ body {
   font-weight: bold;
   color: green;
 }
-.refNoStatus{
+#refNoStatus{
   text-align: center;
   font-family: "Nunito", sans-serif;
 }

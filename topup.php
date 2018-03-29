@@ -3,6 +3,8 @@
 
 
 <head>
+	<meta name="referrer" content="no-referrer"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -410,18 +412,19 @@ try {
 
 
 							jQuery.ajax({
-							url: "https://api.tamago.live/verify?phone="+$("#txtPhoneNo").val(),
-							data:$("#txtPhoneNo").val(),
+							url: "phonecheck.php",
+							data:{phone: $("#txtPhoneNo").val()},
 							type: "POST",
 							success:function(data){
-								//console.log(data.data);
+								data = JSON.parse(data);
+								console.log(data.data);
 								if (data.data != ''){
 									for (i = 0; i < data.data.length; i++){
 										if (document.getElementById("countrycode").value == data.data[i].area){
 											//console.log("Yes it matched");
 											if ($("#txtPhoneNo").val() == data.data[i].mobile){
 												//console.log("Con lan firm matched");
-												content = "Your phone number is eligible to pay";
+												content = "Your phone number is eligible to redeem";
 										$('#phone-status').css('color', 'green');
 										//$('#submit-button').attr('disabled',false);
 										$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
@@ -497,15 +500,16 @@ try {
 function userImgNickName(uid){
 	if (uid != ''){
 		jQuery.ajax({
-								url: "https://api.tamago.live/user?id="+uid,
-								data: uid,
+								url: "uidcheck.php",
+								data: {uid: uid},
 								type: "POST",
 								success:function(data){
-										console.log(data.data.head_img);
+									data = JSON.parse(data);
+										console.log(data.data.img);
 										//console.log(data.data.cover_img);
 										//console.log(data.data.username);
 										
-										checkCode(uid,data.data.username,data.data.head_img);
+										checkCode(uid,data.data.username,data.data.img);
 										
 
 								},
@@ -579,8 +583,8 @@ jQuery.ajax({
 		}
 function topup(){
 	jQuery.ajax({
-							url: "https://api.tamago.live/verify?phone="+$("#txtPhoneNo").val(),
-							data:$("#txtPhoneNo").val(),
+							url: "phonecheck.php",
+							data:{phone: $("#txtPhoneNo").val()},
 							type: "POST",
 							success:function(data){
 								//check if voucher code is empty
@@ -589,15 +593,15 @@ function topup(){
 
 								//ajax on https://api.tamago.live/user?id= for user id from verify phone
 
-
-								//console.log(data.data);
+								data = JSON.parse(data);
+								console.log(data);
 								if (data.data != ''){
 									for (i = 0; i < data.data.length; i++){
 										if (document.getElementById("countrycode").value == data.data[i].area){
 											//console.log("Yes it matched");
 											if ($("#txtPhoneNo").val() == data.data[i].mobile){
 											//console.log("Con lan firm matched");
-												content = "Your phone number is eligible to pay";
+												content = "Your phone number is eligible to redeem";
 												$('#phone-status').css('color', 'green');
 												//$('#submit-button').attr('disabled',false);
 												$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
