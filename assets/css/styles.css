@@ -48,6 +48,7 @@ body {
   border-radius: 5px;
   margin: 10px 8%;
   height: 35px;
+  display:block;
 }
 
 .areaCode {
@@ -125,7 +126,8 @@ body {
   border-radius: 3px;
   color: #fc382a;
   font-weight: bold;
-  font-size: 8vw;
+  /* font-size: 8vw; */
+  text-align: center;
 }
 
 .bottomRow3 {
@@ -244,10 +246,19 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
+.topupPhone {
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+}
+
 .redeemStatus {
   text-align: center;
   font-family: "Nunito", sans-serif;
   font-size: 26px;
   font-weight: bold;
   color: green;
+}
+.refNoStatus{
+  text-align: center;
+  font-family: "Nunito", sans-serif;
 }

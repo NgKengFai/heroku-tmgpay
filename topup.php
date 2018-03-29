@@ -20,9 +20,9 @@
 
         <div class="text-center">
 			<img class="logo" src="logo.png">
-            <span class="topUpCss"> </img> Top Up</span>
+            <span class="topUpCss"> </img> Redeem</span>
 
-            <div class="phoneDiv">
+            <div class="phoneDiv" id="phoneDiv">
                 <div class="pull-left areaCode">
 					<select id="countrycode" class="countrycode" style="width:55px;" onchange="">
 								<option value=''>--</option>
@@ -78,7 +78,7 @@ try {
             </div>-->
             <div class="bottomRow3">
 				<span id="topup-status"></span>
-                <input type="button" id="submit-button" class="topUpButton" value="Top Up" onclick="topup()" />
+                <input type="button" id="submit-button" class="topUpButton" value="Redeem" onclick="topup()" />
             </div>
         </div>
 
@@ -87,6 +87,8 @@ try {
 	<div class="userImg">
 			</div>
 			<div class="userName"></div>
+			<div id="topupPhone" class="topupPhone"></div>
+			<div id="refNoStatus" style="display:none">Your reference code no. is: <span class="refNo"></span></div>
     <script>
 		//blur for prefixes
 		$('select').on('blur focus', function (e) {
@@ -499,29 +501,12 @@ function userImgNickName(uid){
 								data: uid,
 								type: "POST",
 								success:function(data){
-										//console.log(data.data.head_img);
+										console.log(data.data.head_img);
 										//console.log(data.data.cover_img);
 										//console.log(data.data.username);
-
-										checkCode();
-										var tCoin = 10000;
-										if (check ==1){
-										$(".userName").html(data.data.username);
-										$(".redeemStatus").html("Redeem Successful");
-										$(".redeemStatus").css('color', 'green');
-										$(".redeemMessage").html(tCoin+" T-coin redeemed successful by");
-										$('#countrycode').prop('selectedIndex',0)
-										document.getElementById('txtPhoneNo').value='';
-										document.getElementById('inputCode').value='';
-										document.getElementById('phone-status').style.display = 'none';
-										if (data.data.head_img == null){
-											$(".userImg").html("<img src='img/default_head_0_normal.jpg' alt='userImage' height='250' width='250'>");
-										}
-
-										}else{
-											$(".redeemStatus").html("Redeem Failed");
-											$(".redeemStatus").css('color', 'red');
-										}
+										
+										checkCode(uid,data.data.username,data.data.head_img);
+										
 
 								},
 								error:function (){}
@@ -530,15 +515,68 @@ function userImgNickName(uid){
 	}
 }
 
-function checkCode(){
-	code = "1231231231231231";
-	if ($("#inputCode").val()==code){
+function checkCode(uid,username,headImg){
+	
+jQuery.ajax({
+				url:"validate.php",
+				data: {
+						code: $("#inputCode").val(),
+						uid: uid,
+						phone: $("#txtPhoneNo").val(),
+						area: document.getElementById("countrycode").value
+				},
+				type: "POST",
+				success:function(data){
+						console.log(data);
+						refno = JSON.parse(data).ref_no;
+						status = JSON.parse(data).message;
+						var tCoin = status;
+										if (status =="invalid_param"){
+											$(".redeemStatus").html("Please contact our support team");
+											$(".redeemStatus").css('color', 'red');
 
-		check = 1;
-	}else{
-		check =0;
-	}
-}
+										}else if (status == "invalid_code"){
+											$(".redeemStatus").html("Invalid Code");
+											$(".redeemStatus").css('color', 'red');
+										}else if (status == "expired_code"){
+											$(".redeemStatus").html("Expired Code");
+											$(".redeemStatus").css('color', 'red');											
+										}else if (status == "redeemed_code"){
+											$(".redeemStatus").html("Code already redeemed");
+											$(".redeemStatus").css('color', 'red');
+										}else{
+											$(".userName").html(username);
+											$(".redeemStatus").html("Redeem Successful");
+											$(".redeemStatus").css('color', 'green');
+											$(".redeemMessage").html(tCoin+" T-coin redeemed successful by");
+											$(".refNo").html(refno);
+											document.getElementById('refNoStatus').style.display = 'block';
+											var topupPhone = document.getElementById("countrycode").value+document.getElementById('txtPhoneNo').value;
+											$('#countrycode').prop('selectedIndex',0);
+											document.getElementById('txtPhoneNo').value='';
+											document.getElementById('inputCode').value='';
+											document.getElementById('phone-status').style.display = 'none';
+											document.getElementById('phoneDiv').style.display = 'none';
+											document.getElementById('inputCode').style.display = 'none';
+											document.getElementById('submit-button').style.display = 'none';
+											$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
+											$("#topupPhone").html(topupPhone);	
+											if (headImg == null){
+												$(".userImg").html("<img src='img/default_head_0_normal.jpg' alt='userImage' height='250' width='250'>");
+											}else{
+												$(".userImg").html("<img src='" +headImg + "' alt='userImage' height='250' width='250'>");
+											}
+										}
+				},
+				error:function (){
+					console.log("Error on output");
+				} 
+
+			});
+
+
+
+		}
 function topup(){
 	jQuery.ajax({
 							url: "https://api.tamago.live/verify?phone="+$("#txtPhoneNo").val(),
@@ -558,14 +596,14 @@ function topup(){
 										if (document.getElementById("countrycode").value == data.data[i].area){
 											//console.log("Yes it matched");
 											if ($("#txtPhoneNo").val() == data.data[i].mobile){
-												//console.log("Con lan firm matched");
+											//console.log("Con lan firm matched");
 												content = "Your phone number is eligible to pay";
-										$('#phone-status').css('color', 'green');
-										//$('#submit-button').attr('disabled',false);
-										$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
-										flag = 1;
+												$('#phone-status').css('color', 'green');
+												//$('#submit-button').attr('disabled',false);
+												$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
+												flag = 1;
 
-										userImgNickName(data.data[i].uid);
+												userImgNickName(data.data[i].uid);
 
 
 											}
