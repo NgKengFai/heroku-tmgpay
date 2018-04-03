@@ -567,6 +567,8 @@ jQuery.ajax({
 											$("#topupPhone").html(topupPhone);	
 											if (headImg == null){
 												$(".userImg").html("<img src='img/default_head_0_normal.jpg' alt='userImage' height='250' width='250'>");
+											}else if (headImg.match(/^.*default.*$/)){
+												$(".userImg").html("<img src='img/default_head_0_normal.jpg' alt='userImage' height='250' width='250'>");
 											}else{
 												$(".userImg").html("<img src='" +headImg + "' alt='userImage' height='250' width='250'>");
 											}

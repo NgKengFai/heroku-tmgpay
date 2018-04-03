@@ -66,7 +66,9 @@ var configurationObject = {
  * @param jsonResponseObject - the JSON response from the 'setup' call to the Adyen CheckoutAPI
  */
 function initiateCheckout(jsonResponse) {
+    console.log(jsonResponse);
     var checkout = chckt.checkout(jsonResponse, '.checkout', configurationObject);
+
 };
 
 

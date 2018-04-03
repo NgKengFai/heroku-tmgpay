@@ -40,7 +40,7 @@ class Client
             'shopperReference' => $order->getShopperReference(),
             'shopperLocale' => $order->getShopperLocale(),
             'reference' => $order->getReference(),
-            'enableOneClick' => false,
+            //'enableOneClick' => 'false',
             //'additionalData' => $this->additionalData(),
 			//'shopper.telephoneNumber'=> , //modded
 
@@ -55,17 +55,13 @@ class Client
             'merchantAccount' => $authentication['merchantAccount']
         );
         $data = json_encode($request);
-
+            print_r($data);
+            print_r($url);
+            print_r($authentication);
         return $this->doPostRequest($url, $data, $authentication);
 
     }
 
-    public function additionalData(){
-        $additionalData = array(
-            'brandCode' => 'molpay_ebanking_fpx_MY' 
-        );
-        return $this->additionalData;
-    }
 
     public function verify($data)
     {
@@ -95,7 +91,7 @@ class Client
         // Api key
         curl_setopt($curlAPICall, CURLOPT_HTTPHEADER,
             array(
-                "X-Api-Key: " . $authentication['checkoutAPIkey'],
+                "X-Api-Key: " . $authentication[checkoutAPIkey],
                 "Content-Type: application/json",
                 "Content-Length: " . strlen($data)
             )

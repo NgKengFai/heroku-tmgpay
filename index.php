@@ -749,9 +749,9 @@
 						
 						
 							jQuery.ajax({
-							url: "https://api.tamago.live/verify?phone="+$("#txtPhoneNo").val(),
+							url: "https://webapi.tamago.live/verify?phone="+$("#txtPhoneNo").val(),
 							data:$("#txtPhoneNo").val(),
-							type: "POST",
+							type: "GET",
 							success:function(data){
 								//console.log(data.data);
 								if (data.data != ''){

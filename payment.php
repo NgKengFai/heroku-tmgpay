@@ -10,7 +10,7 @@
  * #############  #############  #############  #############  #####  ######
  *  ############   ############  #############   ############  #####  ######
  *                                      ######
- *                               #############
+ *                                     #############
  *                               ############
  *
  * Adyen Checkout Example (https://www.adyen.com/)
@@ -83,6 +83,7 @@ $setupData = json_encode($client->setup());
 	
     $(document).ready(function () {
         var data = <?php echo $setupData ?>;
+        console.log(data);
         initiateCheckout(data);
         chckt.hooks.beforeComplete = function (node, paymentData) {
             // `node` is a reference to the Checkout container HTML node.
@@ -96,7 +97,7 @@ $setupData = json_encode($client->setup());
                 success: function (data) {
 					$("#order-id").html("<b>Order ID: </b>"+ data.merchantReference);
                     $("#checkout").html("<b>Payment Status: </b>"+ data.authResponse);
-					document.querySelector('.chckt-checkbox').setAttribute('checked', 'false');
+					//document.querySelector('.chckt-checkbox').setAttribute('checked', 'false');
                 },
                 error: function () {
                     if (window.console && console.log) {
@@ -113,6 +114,8 @@ $setupData = json_encode($client->setup());
 <script type="text/javascript">
 //$('.chckt-checkbox').prop('checked', "false");
 //document.querySelector('.chckt-checkbox').setAttribute('checked', 'false');
+var docOrigin = document.location.origin || (document.location.protocol + "//" + document.location.host);
+console.log(docOrigin);
 console.log("Test");
 </script>
 </body>
