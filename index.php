@@ -524,6 +524,8 @@
 			
 			//for payment steps but will migrate to post method
 			setCookie("value",parseFloat(coinData[type].replace(/,/g, '')));
+            tcoinData = { "1": "40", "2": "410", "3": "840", "4": "1060", "5": "3300", "6": "7850","7": "11,500","8": "60,000" };
+            setCookie("tcoins",tcoinData[type]);
 			$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');
 						
         }
@@ -537,41 +539,41 @@
 			if (flag == 1) {
 				
 				
-						//whether data is empty
-						if (document.getElementById("countrycode").value ==''){
-								$('#phone-status').css('color', 'red');
-								$('#submit-button').prop('disabled',true).css('background-color', 'grey');
-								content= "Select Your country prefix";
-								$("#phone-status").html(content);
-							}else{
-							//console.log(document.getElementById("lblRM").innerHTML);			
-								if (document.getElementById("lblRM").innerHTML ==' -'){
-									//console.log("What the fuck going on here");
-									content= "Select your top up value";
-									$('#topup-status').css('display', 'block');
-									$('#topup-status').css('color', 'red');
-									$("#topup-status").html(content);
-									$('#submit-button').prop('disabled',true).css('background-color', 'grey');						
-								}else{
-									$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');				
-									$('#topup-status').css('display', 'none');
-										if (txtPhoneNo.val().length > 0) {
-											var e = document.getElementById("countrycode");
-											var countryCode = e.options[e.selectedIndex].value;
-											//window.sessionStorage.countrycode= countryCode;
-											//window.sessionStorage.phonenumber = txtPhoneNo.val();
-											setCookie("countrycode",countryCode);
-											phone = document.getElementById("countrycode").value + txtPhoneNo.val();
-											//console.log(phone);
-											setCookie("phonenumber",phone);setCookie("select",currentSelection)				
-											//localStorage.setItem("countrycode",countryCode);
-											//localStorage.setItem("phonenumber",txtPhoneNo.val());
-											window.location.href = "PaymentType.php"; //change to redirect using redirect plugin
-										}else {
+				//whether data is empty
+				if (document.getElementById("countrycode").value ==''){
+						$('#phone-status').css('color', 'red');
+						$('#submit-button').prop('disabled',true).css('background-color', 'grey');
+						content= "Select Your country prefix";
+						$("#phone-status").html(content);
+					}else{
+					//console.log(document.getElementById("lblRM").innerHTML);			
+						if (document.getElementById("lblRM").innerHTML ==' -'){
+							//console.log("What the fuck going on here");
+							content= "Select your top up value";
+							$('#topup-status').css('display', 'block');
+							$('#topup-status').css('color', 'red');
+							$("#topup-status").html(content);
+							$('#submit-button').prop('disabled',true).css('background-color', 'grey');						
+						}else{
+							$('#submit-button').prop('disabled',false).css('background-color', '#5EBFB8');				
+							$('#topup-status').css('display', 'none');
+								if (txtPhoneNo.val().length > 0) {
+									var e = document.getElementById("countrycode");
+									var countryCode = e.options[e.selectedIndex].value;
+									//window.sessionStorage.countrycode= countryCode;
+									//window.sessionStorage.phonenumber = txtPhoneNo.val();
+									setCookie("countrycode",countryCode);
+									phone = document.getElementById("countrycode").value + txtPhoneNo.val();
+									//console.log(phone);
+									setCookie("phonenumber",phone);setCookie("select",currentSelection)				
+									//localStorage.setItem("countrycode",countryCode);
+									//localStorage.setItem("phonenumber",txtPhoneNo.val());
+									window.location.href = "PaymentType.php"; //change to redirect using redirect plugin
+								}else {
 
-											lblRequiredPhoneNumber.show();
-										}
+									lblRequiredPhoneNumber.show();
 								}
+						}
 					}
 			}else if (flag == 0) {
 			$('#submit-button').prop('disabled',true).css('background-color', 'grey');

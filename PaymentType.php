@@ -110,7 +110,7 @@
 
         .selectionOuter span {
 
-            margin-top: 5vw;
+            /* margin-top: 5vw; */
             display: inline-block;
         }
 
@@ -181,7 +181,7 @@
         }
 
         .rmCss {
-
+            float:left;
             color: #999999;
             margin-top: 3vw !important;
         }
@@ -314,7 +314,7 @@
                 </div>
 
                 <div class="selectionOuter pull-left">
-                    <span class="spanTitle">Paypal</span>
+                    <span class="spanTitle">PayPal</span>
                     <br />
                     <span class="rmCss">Account Email:
                         <br/>your email</span>
@@ -357,17 +357,26 @@
 
             <div class="bottomRow3">
 
-                <input id="btnPay" type="button" class="topUpButton" value="Top Up" onclick="pay()" />
-				<div id="paypal-header">Please click here to pay:</div>
-				<div id="paypal-button-container"></div>
+                <form id="PayPalForm" class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">
+                    <input type="hidden" name="cmd" value="_xclick" />
+                    <input type="hidden" name="no_note" value="1" />
+                </form>
+                <div id="paypal-header">
+                <!-- <input type="button" name="submit" style="background-color: red; color: white;" value="Pay With Paypal (Use This Button To Pay, Can Customize Into Preferred Design)" onclick="payWithPayPal()"/> -->
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="payWithPayPal()"/>
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">  
+                    
+                    <!-- <div id="paypal-header">Please click here to pay:</div>
+                    <div id="paypal-button-container"></div> -->
+                </div>
+                <div><input id="btnPay" type="button" class="topUpButton" value="Top Up" onclick="pay()" /></div>
             </div>
         </div>
 		
     </div>
-	
-    <script>
-	
 
+    
+    <script>
 			paypal.Button.render({
 
             env: 'sandbox', // sandbox | production
@@ -434,31 +443,32 @@
 			var decodedCookie = decodeURIComponent(document.cookie);
 			var ca = decodedCookie.split(';');
 			for(var i = 0; i < ca.length; i++) {
-							var c = ca[i];
-							while (c.charAt(0) == ' ') {
-								c = c.substring(1);
-							}
-							if (c.indexOf(name) == 0) {
-								return c.substring(name.length, c.length);
-							}
-						}
-						return "";
-					}
-		//delete cookie
-			function delete_cookie(name) {
-				document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+				var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
 			}
-			
-			function deleteAllCookies() {
-				var cookies = document.cookie.split(";");
+			return "";
+		}
 
-				for (var i = 0; i < cookies.length; i++) {
-					var cookie = cookies[i];
-					var eqPos = cookie.indexOf("=");
-					var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-					document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-			}
-}
+		//delete cookie
+		function delete_cookie(name) {
+			document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+		}
+			
+		function deleteAllCookies() {
+			var cookies = document.cookie.split(";");
+
+			for (var i = 0; i < cookies.length; i++) {
+				var cookie = cookies[i];
+				var eqPos = cookie.indexOf("=");
+				var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+				document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+		}
+    }
 
         function select(evt, type) {
 
@@ -519,6 +529,10 @@
 				}
 				
             }
+        }
+
+        function payWithPayPal() {
+            document.getElementById("PayPalForm").submit();
         }
 
     </script>
