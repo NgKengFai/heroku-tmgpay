@@ -357,7 +357,7 @@
 
             <div class="bottomRow3">
 
-                <form id="PayPalForm" class="paypal" action="payments.php" method="post" id="paypal_form" target="_blank">
+                <form id="PayPalForm" class="paypal" action="payments.php" method="post" id="paypal_form" target="_self">
                     <input type="hidden" name="cmd" value="_xclick" />
                     <input type="hidden" name="no_note" value="1" />
                 </form>
