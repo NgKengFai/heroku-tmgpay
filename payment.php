@@ -83,7 +83,7 @@ $setupData = json_encode($client->setup());
 	
     $(document).ready(function () {
         var data = <?php echo $setupData ?>;
-        console.log(data);
+        //console.log(data);
         initiateCheckout(data);
         chckt.hooks.beforeComplete = function (node, paymentData) {
             // `node` is a reference to the Checkout container HTML node.
@@ -115,8 +115,8 @@ $setupData = json_encode($client->setup());
 //$('.chckt-checkbox').prop('checked', "false");
 //document.querySelector('.chckt-checkbox').setAttribute('checked', 'false');
 var docOrigin = document.location.origin || (document.location.protocol + "//" + document.location.host);
-console.log(docOrigin);
-console.log("Test");
+//console.log(docOrigin);
+//console.log("Test");
 </script>
 </body>
 </html>

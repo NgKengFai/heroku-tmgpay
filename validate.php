@@ -6,6 +6,12 @@
 //$code = "1122233334444";
 //echo mb_substr($code, 2, 3);
 
+//semi-migration to hash.
+if (strlen($_POST['code'])>17){
+    $code = hash("sha256",$_POST['code']);
+}else if (strlen($_POST['code'])<17){
+    $code = $_POST['code'];
+}
 $area = urlencode($_POST['area']);
 $batchno =substr($_POST["code"],2,3);
 $query = "code=$_POST[code]&phoneno=$_POST[phone]&areacode=$area&uid=$_POST[uid]&batchno=$batchno";
