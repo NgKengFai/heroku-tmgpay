@@ -361,14 +361,14 @@
                     <input type="hidden" name="cmd" value="_xclick" />
                     <input type="hidden" name="no_note" value="1" />
                 </form>
-                <div id="paypal-header">
+                <!-- <div id="paypal-header"> -->
                 <!-- <input type="button" name="submit" style="background-color: red; color: white;" value="Pay With Paypal (Use This Button To Pay, Can Customize Into Preferred Design)" onclick="payWithPayPal()"/> -->
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="payWithPayPal()"/>
-                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">  
+                    <!-- <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="payWithPayPal()"/>
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">   -->
                     
-                    <!-- <div id="paypal-header">Please click here to pay:</div>
-                    <div id="paypal-button-container"></div> -->
-                </div>
+                    <div id="paypal-header">Please click here to pay:</div>
+                    <div id="paypal-button-container"></div>
+                <!-- </div> -->
                 <div><input id="btnPay" type="button" class="topUpButton" value="Top Up" onclick="pay()" /></div>
             </div>
         </div>
@@ -379,56 +379,42 @@
     <script>
 			paypal.Button.render({
 
-            env: 'sandbox', // sandbox | production
+env: 'sandbox',
 
-            // PayPal Client IDs - replace with your own
-            // Create a PayPal app: https://developer.paypal.com/developer/applications/create
-            client: {
-                sandbox:    'AXgrVs0H9QureJhIGNHrkTuQKWSnw3Yf0T82hi7DpiJpMAwbJ_8h6t-rAcasVZHiPC5J3X2DvekefJRq',
-                production: '<insert production client id>'
+commit: true,
+
+payment: function(data, actions) {
+
+    return paypal.request.post('/create-payment.php').then(function(res) {
+        return res.id;
+    });
+},
+
+onAuthorize: function(data, actions) {
+    return actions.payment.execute().then(function(payment) {
+        console.log(payment);
+
+        $.ajax({
+            type: "POST",
+            url: "/execute-payment.php",
+            data: ({ "payment": payment }),
+            success: function(data) {
+                alert("Payment is Completed");
+                window.location.href = "/payment-successful.php";
             },
+            error: function() {
+                
+            }
+        });
+    });
+},
 
-            // Show the buyer a 'Pay Now' button in the checkout flow
-            commit: true,
+onCancel: function(data, actions) {
 
-            // payment() is called when the button is clicked
-            payment: function(data, actions) {
+    alert("Payment Cancelled!");
+}
 
-                // Make a call to the REST api to create the payment
-                return actions.payment.create({
-                    payment: {
-                        transactions: [
-                            {
-                                amount: { total: value, currency: currency }
-                            }
-                        ]
-                    }
-                });
-            },
-
-            // onAuthorize() is called when the buyer approves the payment
-            onAuthorize: function(data, actions) {
-
-                // Make a call to the REST api to execute the payment
-                return actions.payment.execute().then(function() {
-                    window.alert('Payment Complete!');
-					deleteAllCookies();
-                });
-            },
-			
-			onCancel: function(data, actions) {
-        /* 
-         * Buyer cancelled the payment 
-         */
-			},
-
-			onError: function(err) {
-        /* 
-         * An error occurred during the transaction 
-         */
-			}
-
-        }, '#paypal-button-container');
+}, '#paypal-button-container');
 	
 					
 		console.log(getCookie("value"));
