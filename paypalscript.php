@@ -37,7 +37,8 @@
                         url: "/execute-payment.php",
                         data: ({ "payment": payment }),
                         success: function(data) {
-                            alert("Success!");
+                            alert("Payment is Completed");
+                            window.location.href = "/payment-successful.php";
                         },
                         error: function() {
                             
