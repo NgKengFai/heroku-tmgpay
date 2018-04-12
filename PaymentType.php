@@ -357,10 +357,10 @@
 
             <div class="bottomRow3">
 
-                <form id="PayPalForm" class="paypal" action="payments.php" method="post" id="paypal_form" target="_self">
+                <!-- <form id="PayPalForm" class="paypal" action="payments.php" method="post" id="paypal_form" target="_self">
                     <input type="hidden" name="cmd" value="_xclick" />
                     <input type="hidden" name="no_note" value="1" />
-                </form>
+                </form> -->
                 <!-- <div id="paypal-header"> -->
                 <!-- <input type="button" name="submit" style="background-color: red; color: white;" value="Pay With Paypal (Use This Button To Pay, Can Customize Into Preferred Design)" onclick="payWithPayPal()"/> -->
                     <!-- <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" onclick="payWithPayPal()"/>
@@ -385,7 +385,7 @@ commit: true,
 
 payment: function(data, actions) {
 
-    return paypal.request.post('/create-payment.php').then(function(res) {
+    return paypal.request.post('/create-payment.php',{value: value, currency: currency, tcoins: getCookie("tcoins") }).then(function(res) {
         return res.id;
     });
 },

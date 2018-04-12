@@ -5,9 +5,9 @@
 
 	//Option Configuration
 
-	$payment_amount = "10.00";
-	$payment_description = "Tamago Top Up";
-	$payment_currency = "MYR";
+	$payment_amount = $_POST['value'];
+	$payment_description = "Tamago Top Up ".$_POST['tcoins']." t-coins";
+	$payment_currency = $_POST['currency'];
 	
 	//Credential Configuration
 
