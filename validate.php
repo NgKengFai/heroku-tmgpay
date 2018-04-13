@@ -8,10 +8,10 @@
 
 //semi-migration to hash.
 //if (strlen($_POST['code'])>17){
-    $code = hash("sha256",$_POST['code']);
+//    $code = hash("sha256",$_POST['code']);
 //    echo $code;
 //}else if (strlen($_POST['code'])<17){
-//    $code = $_POST['code'];
+    $code = $_POST['code'];
 //}
 $area = urlencode($_POST['area']);
 $batchno =substr($_POST["code"],2,3);
