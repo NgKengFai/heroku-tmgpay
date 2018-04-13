@@ -29,6 +29,7 @@
             border: solid 2px #979797;
             margin: 8px 0px;
             border-radius: 10px;
+            width: 200px; /** added for moz support */
         }
 
         .text-center {
@@ -307,7 +308,7 @@
 
         <div>
 
-            <div class="boxCss pull-left" onclick="select(event, 1)">
+            <div class="boxCss pull-left" onclick="selectPayment(event, 1);">
                 <div class="pull-left">
                     <div class="checkBox">
                     </div>
@@ -316,13 +317,13 @@
                 <div class="selectionOuter pull-left">
                     <span class="spanTitle">PayPal</span>
                     <br />
-                    <span class="rmCss">Account Email:
-                        <br/>your email</span>
+                    <span class="rmCss">Safe & Secure
+                        <br/>Payment</span>
                     <img class='paypal-icon' src='img/bank-icon-01.png'>
                 </div>
             </div>
 
-            <div class="boxCss pull-right" onclick="select(event, 2)">
+            <div class="boxCss pull-right" onclick="selectPayment(event, 2);">
                 <div class="pull-left">
                     <div class="checkBox">
                     </div>
@@ -372,7 +373,7 @@
                 <div><input id="btnPay" type="button" class="topUpButton" value="Top Up" onclick="pay()" /></div>
             </div>
         </div>
-		
+		<div id="error">-</div>
     </div>
 
     
@@ -383,6 +384,25 @@ env: 'sandbox',
 
 commit: true,
 
+style: {
+        layout: 'vertical',
+        size: 'medium',
+        color: 'blue',
+        shape: 'rect'
+        // label: 'checkout'
+    },
+    // Specify allowed and disallowed funding sources
+        //
+        // Options:
+        // - paypal.FUNDING.CARD
+        // - paypal.FUNDING.CREDIT
+        // - paypal.FUNDING.ELV
+
+        funding: {
+            allowed: [ paypal.FUNDING.CARD ],
+            disallowed: [paypal.FUNDING.CREDIT ]
+        },
+
 payment: function(data, actions) {
 
     return paypal.request.post('/create-payment.php',{value: value, currency: currency, tcoins: getCookie("tcoins") }).then(function(res) {
@@ -392,35 +412,45 @@ payment: function(data, actions) {
 
 onAuthorize: function(data, actions) {
     return actions.payment.execute().then(function(payment) {
-        console.log(payment);
+        //console.log(payment);
 
         $.ajax({
             type: "POST",
             url: "/execute-payment.php",
             data: ({ "payment": payment }),
             success: function(data) {
-                alert("Payment is Completed");
-                window.location.href = "/payment-successful.php";
+                //console.log(data);
+                //alert("Payment is Completed");
+                console.log(data);
+                //window.location.href = "/payment-successful.php";
             },
-            error: function() {
+            error: function(err) {
                 
             }
+
         });
     });
 },
 
 onCancel: function(data, actions) {
 
-    alert("Payment Cancelled!");
-}
+    alert("Payment Cancelled. Please retry again or with another payment method.");
+},
+
+onError: function(err) {
+            // Show an error page here, when an error occurs
+            //window.location.href = "/error.php";
+            console.log("You have an error "+err.message);
+            document.getElementById("error").innerHTML = "You have an error "+err.message;
+        }
 
 }, '#paypal-button-container');
 	
 					
-		console.log(getCookie("value"));
-		console.log(getCookie("currency"));
-		console.log(getCookie("phonenumber"));
-		console.log(getCookie("countrycode"));
+		//console.log(getCookie("value"));
+		//console.log(getCookie("currency"));
+		//console.log(getCookie("phonenumber"));
+		//console.log(getCookie("countrycode"));
         var currentSelection, selections = jQuery(".boxCss"), btnPay = jQuery("#btnPay");
 		
 		//retrieve cookie data
@@ -455,8 +485,17 @@ onCancel: function(data, actions) {
 				document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
 		}
     }
+    (function () {
 
-        function select(evt, type) {
+Init()
+})();
+
+function Init() {
+
+//selections[0].click();
+}
+
+        function selectPayment(evt, type) {
 
             for (i = 0; i < selections.length; i++) {
                 selections[i].className = selections[i].className.replace(" active", "");
