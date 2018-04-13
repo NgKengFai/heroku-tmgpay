@@ -412,7 +412,7 @@ payment: function(data, actions) {
 
 onAuthorize: function(data, actions) {
     return actions.payment.execute().then(function(payment) {
-        //console.log(payment);
+        console.log(payment);
 
         $.ajax({
             type: "POST",
@@ -421,7 +421,7 @@ onAuthorize: function(data, actions) {
             success: function(data) {
                 //console.log(data);
                 //alert("Payment is Completed");
-                console.log(data);
+                //console.log(data);
                 //window.location.href = "/payment-successful.php";
             },
             error: function(err) {
