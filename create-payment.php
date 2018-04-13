@@ -92,7 +92,7 @@
 	$headers[] = "Authorization: Bearer " . $access_token;
 
 	//to add negative testing
-	$headers[] = "PayPal-Mock-Response: {\"mock_application_codes\":\"INSTRUMENT_DECLINED\"}";
+	//$headers[] = "PayPal-Mock-Response: {\"mock_application_codes\":\"INSTRUMENT_DECLINED\"}";
 
 	//Body
 	$body = '{
