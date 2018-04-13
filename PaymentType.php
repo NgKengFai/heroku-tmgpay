@@ -516,12 +516,16 @@ function Init() {
 					select = getCookie("select");
 					
 					coinData = { "1": "1", "2": "10", "3": "20", "4": "25", "5": "75", "6": "175", "7": "250","8": "1,250" };
-						if (getCookie("currency")=="VND"){
+					coinDataSG = { "1": "1.50", "2": "13", "3": "25", "4": "35", "5": "100", "6": "230", "7": "330","8": "1,650" };	
+                        if (getCookie("currency")=="VND"){
 							currency ="USD";
 							value = coinData[select];
 						}else if (getCookie("currency") == "IDR"){
 							currency ="USD";
 							value = coinData[select];
+                        }else if (getCookie("currency") == "MYR"){
+							currency ="SGD";
+							value = coinDataSG[select];
 						} else {
 							currency = getCookie("currency");
 						}
