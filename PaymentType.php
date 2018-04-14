@@ -417,18 +417,18 @@ onAuthorize: function(data, actions) {
                     payerID: data.payerID
                 };
     return actions.payment.execute().then(function(payment) {
-        //console.log(payment);
+        console.log(data);
 
         $.ajax({
             type: "POST",
             url: "/execute-payment.php",
-            data: ({ data }),
+            data: data ,
             success: function(res) {
                 //console.log(data);
                 //alert("Payment is Completed");
                 //console.log(data);
                 //window.location.href = "/payment-successful.php";
-
+                console.log(res);
             },
             error: function(err) {
                 

@@ -10,6 +10,7 @@
 	//$payment_id = $_POST['payment']['id'];
 	$payment_id = $_POST['paymentID'];
 	$payer_id  = $_POST['payerID'];
+	echo "The post details".$payment_id.$payer_id;
 	//Transaction Amount
 	//$_POST['payment']['transactions'][0]['amount']['currency'];
 
