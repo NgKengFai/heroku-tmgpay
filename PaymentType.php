@@ -351,6 +351,7 @@
                     <br />
                     <span class="rmCss">Online Banking</span>
                 </div> -->
+
             </div>
         </div>
 
@@ -422,7 +423,7 @@ onAuthorize: function(data, actions) {
                 //console.log(data);
                 //alert("Payment is Completed");
                 //console.log(data);
-                window.location.href = "/payment-successful.php";
+                //window.location.href = "/payment-successful.php";
             },
             error: function(err) {
                 
