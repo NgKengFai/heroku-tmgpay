@@ -424,6 +424,7 @@ onAuthorize: function(data, actions) {
                 //alert("Payment is Completed");
                 //console.log(data);
                 //window.location.href = "/payment-successful.php";
+                
             },
             error: function(err) {
                 
