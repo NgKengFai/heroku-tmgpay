@@ -412,19 +412,23 @@ payment: function(data, actions) {
 },
 
 onAuthorize: function(data, actions) {
+    var data = {
+                    paymentID: data.paymentID,
+                    payerID: data.payerID
+                };
     return actions.payment.execute().then(function(payment) {
-        console.log(payment);
+        //console.log(payment);
 
         $.ajax({
             type: "POST",
             url: "/execute-payment.php",
-            data: ({ "payment": payment }),
-            success: function(data) {
+            data: ({ data }),
+            success: function(res) {
                 //console.log(data);
                 //alert("Payment is Completed");
                 //console.log(data);
                 //window.location.href = "/payment-successful.php";
-                
+
             },
             error: function(err) {
                 
