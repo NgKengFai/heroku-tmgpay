@@ -72,7 +72,7 @@ ini_set('display_errors', 'On');
 
 	//echo $result;
 	
-	$res = json_decode($result, true);
+	$res = $result;
 
 //get data
 $descriptor = $res['transactions'][0]['description'];
