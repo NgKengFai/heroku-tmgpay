@@ -435,7 +435,7 @@ onAuthorize: function(data, actions) {
                 
             // }
 
-        });
+        //});
     });
 },
 
