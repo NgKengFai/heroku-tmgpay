@@ -69,7 +69,60 @@
 	$result = curl_exec($ch);
 	curl_close ($ch);
 
-	echo $result;
+	//echo $result;
 	
-	//echo $result['transactions'][0]['description'];
+	$res = json_decode($result, true);
+
+//get data
+$descriptor = $res['transactions'][0]['description'];
+$state = $res['state'];
+//$uid = 100008;
+$invoice = mb_substr($descriptor,-22);
+$coins = mb_substr($descriptor, strpos($descriptor, "Up")+3,-37);
+$money = $res['transactions'][0]['amount']['total'];
+$currency =  $res['transactions'][0]['amount']['currency'];
+$createtime =  $res['create_time'];
+$paypalid = $res['payer']['payer_info']['payer_id'];
+$orderid = $res['transactions'][0]['related_resources'][0]['sale']['id'];
+
+if (isset($state) && $state == 'approved'){
+    //echo $state;
+    //echo $res['id'];
+    $query = '
+    INSERT INTO `hm_money`.`money_topup`
+(
+`uid`,
+`transactionid`,
+`status`,
+`tcoin`,
+`money`,
+`type`,
+`paidts`,
+`paypalid`,
+`orderid`)
+VALUES
+(
+"'.$uid.'",
+"'.$invoice.'",
+"1",
+"'.$coins.'",
+"'.$money.'",
+"1",
+"'.$createtime.'",
+"'.$paypalid.'",
+"'.$orderid.'"
+
+)';
+mysqli_query($db,$query) or die(mysqli_error($db));
+$que1 = urlencode($invoice);
+$que2 = $uid;
+
+$que = "transactionid=$que1 &uid=$que2";
+//echo $query;
+$json = file_get_contents("http://api-v2-dev.tamago.tv/topup/money?".$que);
+echo $json;
+
+}else {
+    return;
+}
 ?>

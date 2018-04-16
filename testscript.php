@@ -29,7 +29,7 @@ $orderid = $res['transactions'][0]['related_resources'][0]['sale']['id'];
 if (isset($state) && $state == 'approved'){
     //echo $state;
     //echo $res['id'];
-    $query = "
+    $query = '
     INSERT INTO `hm_money`.`money_topup`
 (
 `uid`,
@@ -43,18 +43,25 @@ if (isset($state) && $state == 'approved'){
 `orderid`)
 VALUES
 (
-'".$uid."'
-'".$invoice."',
-'1',
-'".$coins."',
-'".$money."',
-'1',
-'".$createtime."',
-'".$paypalid."',
-'".$orderid."';
-    ";
+"'.$uid.'",
+"'.$invoice.'",
+"1",
+"'.$coins.'",
+"'.$money.'",
+"1",
+"'.$createtime.'",
+"'.$paypalid.'",
+"'.$orderid.'"
+
+)';
+$que1 = urlencode($invoice);
+$que2 = $uid;
+
+$que = "transactionid=$que1&uid=$que2";
 //echo $query;
-    mysqli_query($db,$query);
+$json = file_get_contents("http://api-v2-dev.tamago.tv/topup/money?".$que);
+echo $json;
+//    mysqli_query($db,$query) or die(mysqli_error($db));
 }else {
     return;
 }
