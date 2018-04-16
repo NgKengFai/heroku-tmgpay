@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 	//Transaction ID - Required For Refund
@@ -76,6 +76,8 @@ ini_set('display_errors', 'On');
 	$res = json_decode($result, true);
 print_r($res);
 //get data
+
+
 $descriptor = $res['transactions'][0]['description'];
 $state = $res['state'];
 //$uid = 100008;
@@ -88,6 +90,7 @@ $paypalid = $res['payer']['payer_info']['payer_id'];
 $orderid = $res['transactions'][0]['related_resources'][0]['sale']['id'];
 
 if (isset($state) && $state == 'approved'){
+	include "config.php";
     //echo $state;
     //echo $res['id'];
     $query = '
