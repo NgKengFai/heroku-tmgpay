@@ -69,6 +69,6 @@
 	curl_close ($ch);
 
 	echo $result;
-	var_dump($result);
+	
 	//echo $result['transactions'][0]['description'];
 ?>
