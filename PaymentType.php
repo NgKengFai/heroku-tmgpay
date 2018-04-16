@@ -287,6 +287,7 @@
 		text-align:center;	
 		}
     </style>
+    <!--Paypal Checkout Script-->
 	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 </head>
 
@@ -390,7 +391,6 @@ style: {
         size: 'medium',
         color: 'blue',
         shape: 'rect'
-        // label: 'checkout'
     },
     // Specify allowed and disallowed funding sources
         //
@@ -417,7 +417,7 @@ onAuthorize: function(data, actions) {
                     payerID: data.payerID
                 };
     //return actions.payment.execute().then(function(payment) {
-        console.log(data);
+        //console.log(data);
         return paypal.request.post("/execute-payment.php", data)
                     .then(function (res) {
         // $.ajax({
@@ -429,7 +429,7 @@ onAuthorize: function(data, actions) {
                 //alert("Payment is Completed");
                 //console.log(data);
                 //window.location.href = "/payment-successful.php";
-                console.log(res);
+                console.log(JSON.parse(res));
             // },
             // error: function(err) {
                 
