@@ -97,6 +97,7 @@ if (isset($state) && $state == 'approved'){
     INSERT INTO `hm_money`.`money_topup`
 (
 `uid`,
+`refno`,
 `transactionid`,
 `status`,
 `tcoin`,
@@ -108,6 +109,7 @@ if (isset($state) && $state == 'approved'){
 VALUES
 (
 "'.$uid.'",
+"'.$payment_id.'",
 "'.$invoice.'",
 "1",
 "'.$coins.'",
