@@ -416,23 +416,24 @@ onAuthorize: function(data, actions) {
                     paymentID: data.paymentID,
                     payerID: data.payerID
                 };
-    return actions.payment.execute().then(function(payment) {
+    //return actions.payment.execute().then(function(payment) {
         console.log(data);
-
-        $.ajax({
-            type: "POST",
-            url: "/execute-payment.php",
-            data: data ,
-            success: function(res) {
+        return paypal.request.post("/execute-payment.php", data)
+                    .then(function (res) {
+        // $.ajax({
+        //     type: "POST",
+        //     url: ,
+        //     data: data ,
+        //     success: function(res) {
                 //console.log(data);
                 //alert("Payment is Completed");
                 //console.log(data);
                 //window.location.href = "/payment-successful.php";
                 console.log(res);
-            },
-            error: function(err) {
+            // },
+            // error: function(err) {
                 
-            }
+            // }
 
         });
     });
@@ -566,9 +567,9 @@ function Init() {
             }
         }
 
-        function payWithPayPal() {
-            document.getElementById("PayPalForm").submit();
-        }
+        // function payWithPayPal() {
+        //     document.getElementById("PayPalForm").submit();
+        // }
 
     </script>
 </body>
