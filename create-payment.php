@@ -1,12 +1,14 @@
 <?php
 	ini_set('display_errors', 'On');
 	error_reporting(E_ALL);
+	require "config.php";
 	/* Setting */
 
 	//Option Configuration
 
 	$payment_amount = $_POST['value'];
-	$payment_description = "Tamago Top Up ".$_POST['tcoins']." t-coins";
+	$invoice = "TMG-".date("Ymdhis").mt_rand(1000,9999);
+	$payment_description = "Tamago Top Up ".$_POST['tcoins']." t-coins. Ref: ".$invoice;
 	$payment_currency = $_POST['currency'];
 	
 	//Credential Configuration

@@ -47,7 +47,7 @@ class Order
 			$this->currencyCode = $_COOKIE["currency"];
 			$this->amount['currency'] = $this->currencyCode;
 			
-			$this->reference = date("Ymdhis").mt_rand(1000,9999);;
+			$this->reference = "TMG-".date("Ymdhis").mt_rand(1000,9999);
 			//$this->shopper.telephoneNumber = $_COOKIE["phonenumber"];
 			$this->shopperReference = $_COOKIE["phonenumber"];
 			$this->countryCode = $_COOKIE["cCode"];
