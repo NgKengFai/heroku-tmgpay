@@ -68,7 +68,7 @@
 	$result = curl_exec($ch);
 	curl_close ($ch);
 
-	//echo $result;
-
-	echo $result['transactions'][0]['description'];
+	echo $result;
+	var_dump($result);
+	//echo $result['transactions'][0]['description'];
 ?>
