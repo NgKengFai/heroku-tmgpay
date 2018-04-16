@@ -1,5 +1,5 @@
 <?php
-require "PayPalConfig.php";
+include "PayPalConfig.php";
 	//Transaction ID - Required For Refund
 	//$_POST['payment']['transactions'][0]['related_resources'][0]['sale']['id'];
 

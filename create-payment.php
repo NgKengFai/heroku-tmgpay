@@ -1,5 +1,5 @@
 <?php
-require "PayPalConfig.php";
+include "PayPalConfig.php";
 	//ini_set('display_errors', 'On');
 	//serror_reporting(E_ALL);
 	/* Setting */
