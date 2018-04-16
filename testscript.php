@@ -9,5 +9,9 @@
         console.log(res.payer["payer_info"].payer_id);
         console.log(res.transactions[0].related_resources[0].sale.id);
     </script>
+<?php
+echo mb_substr("TMG-201804160517173274",-22);
+
+?>
 
 </body>
