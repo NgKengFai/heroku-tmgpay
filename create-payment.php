@@ -1,6 +1,7 @@
 <?php
-	ini_set('display_errors', 'On');
-	error_reporting(E_ALL);
+include "PayPalConfig.php";
+	//ini_set('display_errors', 'On');
+	//serror_reporting(E_ALL);
 	/* Setting */
 
 	//Option Configuration
@@ -18,10 +19,7 @@
 	$success_redirect_url = "https://tamago.live";
 	$cancel_redirect_url = "https://tamago.live";
 	$redirect_url = "/PaymentType.php";
-	//API Credentials - Can Be Generated at https://developer.paypal.com/developer/applications/create
-	$clientID = "AXgrVs0H9QureJhIGNHrkTuQKWSnw3Yf0T82hi7DpiJpMAwbJ_8h6t-rAcasVZHiPC5J3X2DvekefJRq";
-	$clientSecret = "EG75KBlg7zFwUtmyyICwupK5TDk-GLSuLeJE2t5PZTTGaqAxkSuFn0T_Z56hhNeLqCwfGdg1FR1OtlBg";
-
+	
 	/* Access Token Retrieval*/
 
 	//Header
