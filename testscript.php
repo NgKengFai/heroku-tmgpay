@@ -17,7 +17,7 @@ $res = json_decode($res, true);
 //get data
 $descriptor = $res['transactions'][0]['description'];
 $state = $res['state'];
-
+$uid = 100008;
 $invoice = mb_substr($descriptor,-22);
 $coins = mb_substr($descriptor, strpos($descriptor, "Up")+3,-37);
 $money = $res['transactions'][0]['amount']['total'];
