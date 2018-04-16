@@ -429,7 +429,10 @@ onAuthorize: function(data, actions) {
                 //alert("Payment is Completed");
                 //console.log(data);
                 //window.location.href = "/payment-successful.php";
-                console.log(JSON.parse(res));
+                console.log(res);
+                console.log(res.id);
+                console.log(res.related_resources.sale.id);
+                console.logg(state);
             // },
             // error: function(err) {
                 
