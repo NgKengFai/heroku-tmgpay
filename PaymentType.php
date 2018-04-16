@@ -433,7 +433,7 @@ onAuthorize: function(data, actions) {
                 console.log(res.id);
                 console.log(res.payer.state);
                 console.log(res.payer.payer_info.payer_id);
-                //console.log(res.transactions.0.related_resources.sale.id);
+                console.log(res.transactions[0].related_resources.sale.id);
             // },
             // error: function(err) {
                 
