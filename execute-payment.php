@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 	//Transaction ID - Required For Refund
 	//$_POST['payment']['transactions'][0]['related_resources'][0]['sale']['id'];
 
@@ -125,4 +126,3 @@ echo $json;
 }else {
     return;
 }
-?>
