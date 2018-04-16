@@ -90,7 +90,7 @@ $paypalid = $res['payer']['payer_info']['payer_id'];
 $orderid = $res['transactions'][0]['related_resources'][0]['sale']['id'];
 
 if (isset($state) && $state == 'approved'){
-	include "config.php";
+	require("config.php");
     //echo $state;
     //echo $res['id'];
     $query = '
