@@ -415,7 +415,7 @@ onAuthorize: function(data, actions) {
     var data = {
                     paymentID: data.paymentID,
                     payerID: data.payerID,
-                    uid: getCookie("uid");
+                    uid: getCookie("uid")
                 };
     //return actions.payment.execute().then(function(payment) {
         //console.log(data);
