@@ -414,7 +414,8 @@ payment: function(data, actions) {
 onAuthorize: function(data, actions) {
     var data = {
                     paymentID: data.paymentID,
-                    payerID: data.payerID
+                    payerID: data.payerID,
+                    uid: getCookie("uid");
                 };
     //return actions.payment.execute().then(function(payment) {
         //console.log(data);
@@ -429,11 +430,11 @@ onAuthorize: function(data, actions) {
                 //alert("Payment is Completed");
                 //console.log(data);
                 //window.location.href = "/payment-successful.php";
-                console.log(res);
-                console.log(res.id);
-                console.log(res.state);
-                console.log(res.payer["payer_info"].payer_id);
-                console.log(res.transactions[0].related_resources[0].sale.id);
+                //console.log(res);
+                //console.log(res.id);
+                //console.log(res.state);
+                //console.log(res.payer["payer_info"].payer_id);
+                //console.log(res.transactions[0].related_resources[0].sale.id);
             // },
             // error: function(err) {
                 

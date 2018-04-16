@@ -760,7 +760,9 @@
 									for (i = 0; i < data.data.length; i++){ 
 										if (document.getElementById("countrycode").value == data.data[i].area){
 											//console.log("Yes it matched");
+        
 											if ($("#txtPhoneNo").val() == data.data[i].mobile){
+                                                setCookie("uid",data.data[i].uid);
 												//console.log("Con lan firm matched");
 												content = "Your phone number is eligible to pay";
 										$('#phone-status').css('color', 'green');
