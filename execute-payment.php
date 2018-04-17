@@ -132,6 +132,7 @@ $response = json_decode($json, true);
 	if ($response['status'] == 'success'){
 		//$output = $response['message'];
 		header('Location: /payment-successful.php?transactionid='.$invoice.'&status=approved&tcoin='.$coins.'&money='.$currency.$money);
+		die();
 	}
 
 }else {
