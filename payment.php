@@ -75,6 +75,7 @@ $setupData = json_encode($client->setup());
             // `node` is a reference to the Checkout container HTML node.
             // `paymentData` is the result of the payment. Includes the `payload` variable,
             // which you should submit to the server for the Checkout API /verify call.
+            console.log("test");
             $.ajax({
                 url: 'verify.php',
                 data: {payloadData: paymentData},
@@ -101,7 +102,7 @@ $setupData = json_encode($client->setup());
 <script type="text/javascript">
 //$('.chckt-checkbox').prop('checked', "false");
 //document.querySelector('.chckt-checkbox').setAttribute('checked', 'false');
-var docOrigin = document.location.origin || (document.location.protocol + "//" + document.location.host);
+//var docOrigin = document.location.origin || (document.location.protocol + "//" + document.location.host);
 //console.log(docOrigin);
 //console.log("Test");
 </script>
