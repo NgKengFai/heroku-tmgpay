@@ -59,32 +59,6 @@ class Client
             //print_r($url);
             //print_r($authentication);
         return $this->doPostRequest($url, $data, $authentication);
-        
-        //insert to db
-                    
-            require("config.php");
-            //echo $state;
-            //echo $res['id'];
-            $query = '
-            INSERT INTO `hm_money`.`money_topup`
-        (
-        `uid`,
-        `transactionid`,
-        `status`,
-        `tcoin`,
-        `money`,
-        `type`
-        )
-        VALUES
-        (
-        "'.$_POST['uid'].'",
-        "'.$order->getReference().'",
-        "0",
-        "'.$_POST['tcoin'].'",
-        "'.$order->getAmount().'",
-        "1"
-        )';
-        mysqli_query($db,$query) or die(mysqli_error($db));
     }
 
 

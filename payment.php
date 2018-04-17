@@ -58,9 +58,11 @@ date_default_timezone_set('Asia/Singapore');
 </div>
 <?php
 $_POST['uid']=$_COOKIE['uid'];
+$_POST['tcoin']=$_COOKIE['tcoin'];
 $client = new Client();
 $setupData = json_encode($client->setup());
-
+echo $_POST['uid'];
+echo $_POST['tcoin'];
 
 ?>
 <script type="text/javascript">
@@ -79,7 +81,7 @@ $setupData = json_encode($client->setup());
                 method: 'POST',// jQuery > 1.9
                 type: 'POST', //jQuery < 1.9
                 success: function (data) {
-                    console.log(data);
+                    console.log(data.additionalData);
 					$("#order-id").html("<b>Order ID: </b>"+ data.merchantReference);
                     $("#checkout").html("<b>Payment Status: </b>"+ data.authResponse);
 					
