@@ -61,8 +61,8 @@ $_POST['uid']=$_COOKIE['uid'];
 $_POST['tcoin']=$_COOKIE['tcoin'];
 $client = new Client();
 $setupData = json_encode($client->setup());
-echo $_POST['uid'];
-echo $_POST['tcoin'];
+//echo $_POST['uid'];
+//echo $_POST['tcoins'];
 
 ?>
 <script type="text/javascript">
