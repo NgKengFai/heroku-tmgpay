@@ -57,10 +57,10 @@ date_default_timezone_set('Asia/Singapore');
     </div>
 </div>
 <?php
+$_POST['uid']=$_COOKIE['uid'];
 $client = new Client();
 $setupData = json_encode($client->setup());
-echo $client->setup();
-//insert db
+
 
 ?>
 <script type="text/javascript">

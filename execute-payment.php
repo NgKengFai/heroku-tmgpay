@@ -9,10 +9,14 @@ ini_set('display_errors', 'On');
 	//$_POST['payment']['state'];
 
 	//Payment ID
-	//$payment_id = $_POST['payment']['id'];
+	if ($_POST['uid']==''){
+		echo "Error. Please restart your transaction.";
+	}
 	$payment_id = $_POST['paymentID'];
 	$payer_id  = $_POST['payerID'];
 	$uid = $_POST['uid'];
+
+	
 	//echo "The post details".$payment_id.$payer_id;
 	//Transaction Amount
 	//$_POST['payment']['transactions'][0]['amount']['currency'];
