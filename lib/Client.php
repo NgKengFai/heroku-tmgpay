@@ -73,7 +73,7 @@ class Client
         `status`,
         `tcoin`,
         `money`,
-        `type`,
+        `type`
         )
         VALUES
         (
@@ -93,6 +93,8 @@ class Client
         $url = Config::getVerifyUrl();
         $authentication = Config::getAuthentication();
         return $this->doPostRequest($url, $data, $authentication);
+
+        
     }
 
     /** Set up the cURL call to  adyen */
