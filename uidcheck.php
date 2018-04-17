@@ -6,13 +6,13 @@
 //$code = "1122233334444";
 //echo mb_substr($code, 2, 3);
 
-$area = urlencode($_POST['area']);
-$batchno =substr($_POST["code"],2,3);
-$query = "code=$_POST[code]&phoneno=$_POST[phone]&areacode=$area&uid=$_POST[uid]&batchno=$batchno";
+//$area = urlencode($_POST['area']);
+//$batchno =substr($_POST["code"],2,3);
+//$query = "code=$_POST[code]&phoneno=$_POST[phone]&areacode=$area&uid=$_POST[uid]&batchno=$batchno";
 
 //dev
 //$json = file_get_contents("http://api-v2-dev.tamago.tv/topup/validate?".$query);
-$uid=$_POST[uid];
+$uid=$_POST['uid'];
 //prod
 //$json = file_get_contents("https://webapi.tamago.live/user?uid=".$_POST['uid']);
 $json = file_get_contents("https://webapi.tamago.live/user?uid=".$uid);

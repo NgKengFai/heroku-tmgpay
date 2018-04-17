@@ -46,23 +46,7 @@ date_default_timezone_set('Asia/Singapore');
 //echo $_COOKIE["order_id"]; ?></div>
 
 <div class="content">
-    <div class="explanation hidden">
-        <h3>To run this web checkout example, edit the following variables in the <b>config/authentication.ini</b> file:
-        </h3>
-        <p>
-            <b>merchantAccount</b>= "YOUR MERCHANT ACCOUNT", more information in our <a
-                    href="https://docs.adyen.com/developers/get-started-with-adyen/create-a-test-account"
-                    target="_blank">Getting
-                started guide</a>.<br/>
-            <b>checkoutAPIkey</b>= "YOUR CHECKOUT API KEY".<a
-                    href="https://docs.adyen.com/developers/user-management/how-to-get-the-checkout-api-key"
-                    target="_blank">Checkout API key</a>.<br/>
-        </p>
-        <p>
-            For a full reference of the documentation, visit: <a
-                    href="https://docs.adyen.com/developers/checkout/web-sdk" target="_blank">Checkout Web SDK</a>
-        </p>
-    </div>
+
 
     <div class="checkout-container">
 	<div id="order-id"></div>
