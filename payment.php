@@ -79,6 +79,7 @@ $setupData = json_encode($client->setup());
                 method: 'POST',// jQuery > 1.9
                 type: 'POST', //jQuery < 1.9
                 success: function (data) {
+                    console.log(data);
 					$("#order-id").html("<b>Order ID: </b>"+ data.merchantReference);
                     $("#checkout").html("<b>Payment Status: </b>"+ data.authResponse);
 					//document.querySelector('.chckt-checkbox').setAttribute('checked', 'false');
