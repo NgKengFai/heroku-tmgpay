@@ -108,5 +108,49 @@ class Client
         return $result;
     }
 
+    public function sendtoDB() {
+        require "config.php";
+        $query = $query = '
+        INSERT INTO `hm_money`.`money_topup`
+        (
+        `uid`,
+        `transactionid`,
+        `status`,
+        `tcoin`,
+        `money`,
+        `type`,
+        `paidts`
+        )
+        VALUES
+        (
+        "'.$_POST['uid'].'",
+        "'.$order->getReference().'",
+        "1",
+        "'.$_POST['tcoins'].'",
+        "'.$order->getAmount().'",
+        "2",
+        "'.date("Y-m-d H:i:s").'"
+        )';
+        
+        mysqli_query($db,$query) or die(mysqli_error($db));
+    
+    }
+
+    public function verifyPaymenttoDB(){
+            $que1 = urlencode($order->getReference());
+            $que2 = $_POST['uid'];
+            $que = "transactionid=$que1 &uid=$que2";
+            //echo $query;
+            $json = file_get_contents("http://api-v2-dev.tamago.tv/topup/money?".$que);
+            $response = json_decode($json, true);
+
+            if ($response['status'] == 'success'){
+                //$output = $response['message'];
+                echo '/payment-successful.php?transactionid='.$invoice.'&status=approved&tcoin='.$coins.'&money='.$currency.$money;
+		
+	        }
+
+    }
+
 }
 
