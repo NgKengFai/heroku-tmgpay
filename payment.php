@@ -84,7 +84,7 @@ $setupData = json_encode($client->setup());
                     console.log(data.additionalData);
 					$("#order-id").html("<b>Order ID: </b>"+ data.merchantReference);
                     $("#checkout").html("<b>Payment Status: </b>"+ data.authResponse);
-					
+					console.log("Successful");
                 },
                 error: function () {
                     if (window.console && console.log) {
