@@ -421,6 +421,7 @@ onAuthorize: function(data, actions) {
         //console.log(data);
         return paypal.request.post("/execute-payment.php", data)
                     .then(function (res) {
+                        window.location.replace(res);
         // $.ajax({
         //     type: "POST",
         //     url: ,
@@ -441,7 +442,7 @@ onAuthorize: function(data, actions) {
             // }
 
         //});
-        window.location.replace(res);
+        
     });
 },
 
