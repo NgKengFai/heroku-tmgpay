@@ -136,5 +136,6 @@ $response = json_decode($json, true);
 	}
 
 }else {
-    echo "Transaction invalid"; 
+    echo '/payment-cancelled.php?transactionid='.$invoice.'&status=failed&tcoin='.$coins.'&money='.$currency.$money;
+
 }
