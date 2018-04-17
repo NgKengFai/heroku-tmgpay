@@ -40,7 +40,7 @@ class Client
             'shopperReference' => $order->getShopperReference(),
             'shopperLocale' => $order->getShopperLocale(),
             'reference' => $order->getReference(),
-            //'enableOneClick' => 'false',
+            'enableOneClick' => 'false',
             //'additionalData' => $this->additionalData(),
 			//'shopper.telephoneNumber'=> , //modded
 
