@@ -74,13 +74,13 @@ ini_set('display_errors', 'On');
 	//echo $result;
 	
 	$res = json_decode($result, true);
-print_r($res);
-//get data
+
+
+//get data and add to database
 
 
 $descriptor = $res['transactions'][0]['description'];
 $state = $res['state'];
-//$uid = 100008;
 $invoice = substr($descriptor,-22);
 $coins = substr($descriptor, strpos($descriptor, "Up")+3,-37);
 $money = $res['transactions'][0]['amount']['total'];
@@ -127,8 +127,13 @@ $que2 = $uid;
 $que = "transactionid=$que1 &uid=$que2";
 //echo $query;
 $json = file_get_contents("http://api-v2-dev.tamago.tv/topup/money?".$que);
-echo $json;
+$response = json_decode($json, true);
+
+	if ($response['status'] == 'success'){
+		//$output = $response['message'];
+		header('Location: /payment-successful.php?transactionid='.$invoice.'&status=approved&tcoin='.$coin.'&money='.$currency.$money);
+	}
 
 }else {
-    return;
+    echo "Transaction invalid"; 
 }
