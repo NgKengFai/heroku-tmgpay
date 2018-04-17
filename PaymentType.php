@@ -441,6 +441,7 @@ onAuthorize: function(data, actions) {
             // }
 
         //});
+        window.location.replace(res);
     });
 },
 
