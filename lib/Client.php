@@ -91,7 +91,7 @@ class Client
         // Api key
         curl_setopt($curlAPICall, CURLOPT_HTTPHEADER,
             array(
-                "X-Api-Key: " . $authentication[checkoutAPIkey],
+                "X-Api-Key: " . $authentication['checkoutAPIkey'],
                 "Content-Type: application/json",
                 "Content-Length: " . strlen($data)
             )
