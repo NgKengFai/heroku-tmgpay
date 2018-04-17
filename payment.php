@@ -59,7 +59,7 @@ date_default_timezone_set('Asia/Singapore');
 <?php
 $client = new Client();
 $setupData = json_encode($client->setup());
-print_f($client->setup());
+echo $client->setup();
 //insert db
 
 ?>
